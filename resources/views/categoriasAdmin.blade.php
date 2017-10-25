@@ -132,6 +132,7 @@
 										
 									</tbody>
 								</table>
+								<div style="text-align: center">{{$categorias->links()}}</div> 
 							</div>
 							<!-- PAGE CONTENT ENDS -->
 						</div><!-- /.col -->

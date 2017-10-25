@@ -11,7 +11,7 @@ class AdministradorController extends Controller
 {
 	public function categorias(Request $request)
     {
-    	$categorias = Categorias::All();
+    	$categorias = Categorias::paginate(10);
     	return view('categoriasAdmin', compact('categorias'));
     }
     public function crear_categoria(Request $request)
