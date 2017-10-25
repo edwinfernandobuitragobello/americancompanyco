@@ -20,3 +20,14 @@ input{
 	border: 1px solid #ccc;
 }
 
+input [type="submit"]{
+	margin-bottom: 0px;
+	background: #1668C4;
+	color: #fff;
+	border:none;
+}
+
+input [type="submit"]:hover{
+	background: #4A88F4;
+	cursor: pointer;
+}	
