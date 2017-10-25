@@ -15,3 +15,4 @@ Route::get('/','IndexController@index');
 Route::get('/pruebaformulario', function(){
 	return view('form_category');
 });
+Route::get('/admin/categorias','AdministradorController@categorias');
