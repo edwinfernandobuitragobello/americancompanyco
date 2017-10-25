@@ -37,15 +37,9 @@
     	    		<div class="categories">
 						   <ul>
 						  	   <h3>Browse All Categories</h3>
-							      <li><a href="#">Appliances</a></li>
-							      <li><a href="#">Sports Equipments</a></li>
-							      <li><a href="#">Computers & Electronics</a></li>
-							      <li><a href="#">Office supplies</a></li>
-							      <li><a href="#">Health & Beauty</a></li>
-							       <li><a href="#">Home & Garden</a></li>
-							       <li><a href="#">Apparel</a></li>
-							       <li><a href="#">Toys & Games</a></li>
-							       <li><a href="#">Automotive</a></li>
+						  	   		@foreach($categorias as $categoria)
+										<li><a href="#">{{ $categoria->nombre }}</a></li>
+									@endforeach
 						  	 </ul>
 						</div>		
 						<div class="buters-guide">
