@@ -11,7 +11,7 @@ class IndexController extends Controller
 {
     public function index()
     {
-    	$categorias = Categorias::All();
+    	$categorias = Categorias::All()->where('activo',1);
     	return view('index', compact('categorias'));
     }
 }

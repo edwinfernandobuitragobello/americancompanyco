@@ -54,17 +54,24 @@
 										Crear categoria
 									</h1>
 								</div>
-								<form class="form-horizontal" role="form">
+								<div class="alert alert-danger" id="alert_error" style="display: none">
+							    	<p>Corrige el siguiente error:</p>
+							        <ul>
+							            <li>Escribe el nombre de la categoria</li>
+							        </ul>
+							    </div>
+								<form class="form-horizontal" action="{{ url('/admin/crear_categoria') }}" method="POST" role="form">
+									<input type="hidden" name="_token" value="{{ csrf_token() }}">
 									<div class="form-group">
 										<label class="col-sm-5 control-label no-padding-right" for="form-field-1"> Nombre </label>
 
 										<div class="col-sm-7">
-											<input type="text" id="form-field-1" placeholder="Categoria" class="col-xs-10 col-sm-5" />
+											<input type="text" id="form-field-1" name="categoria" placeholder="Categoria" class="col-xs-10 col-sm-5" />
 										</div>
 									</div>
 									<div class="clearfix form-actions">
 										<div class="col-md-offset-5 col-md-7">
-											<button class="btn btn-info" type="button">
+											<button class="btn btn-info" id="submit_categoria" type="submit">
 												<i class="ace-icon fa fa-check bigger-110"></i>
 												Crear
 											</button>
@@ -101,8 +108,13 @@
 												<td>{{ $categoria->nombre }}</td>
 												<td>{{ $categoria->updated_at }}</td>
 												<td style="text-align: center;">
-													<button class="btn btn-xs btn-success">
-														<i class="ace-icon fa fa-check bigger-120">  ACTIVAR</i>
+														@if($categoria->activo==0)
+															<button id="submit_activar" class="btn btn-xs btn-success" onclick="submit_activar({{$categoria->id}})">
+															<i class="ace-icon fa fa-check bigger-120">  ACTIVAR</i>
+														@else
+															<button id="submit_desactivar" class="btn btn-xs btn-warning" onclick="submit_desactivar({{$categoria->id}})">
+															<i class="ace-icon fa fa-close bigger-120">  DESACTIVAR</i>
+														@endif
 													</button>
 												</td>
 												<td style="text-align: center;">
@@ -111,7 +123,7 @@
 													</button>
 												</td>
 												<td style="text-align: center;">
-													<button class="btn btn-xs btn-danger">
+													<button class="btn btn-xs btn-danger" onclick="submit_eliminar({{$categoria->id}})">
 														<i class="ace-icon fa fa-trash-o bigger-120">  ELIMINAR</i>
 													</button>
 												</td>
@@ -130,4 +142,25 @@
 <!-- TERMINAR DE CREAR LA CATEGORIA -->
 
 @include('footerAdmin')
-			
+			<script type="text/javascript">
+	$(document).ready(function(){
+		//función click submit
+        $("#submit_categoria").click(function(){
+            var nombre = $("#form-field-1").val();
+            if(nombre == ""){
+                $('#alert_error').css('display','block');
+                return false;
+            }
+        });
+	});
+	var url = "http://localhost/americancompanyco/public";
+	function submit_activar(id){
+    	window.location.href = url+"/admin/activar_categoria/"+id;
+    }
+    function submit_desactivar(id){
+    	window.location.href = url+"/admin/desactivar_categoria/"+id;
+    }
+    function submit_eliminar(id){
+    	window.location.href = url+"/admin/eliminar_categoria/"+id;
+    }
+</script>
