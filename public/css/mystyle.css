@@ -1,4 +1,22 @@
-#Inputcategoria{
-	color: orange;
-	text-align: center;	
+form{
+	width: 30%;
+	border:1px solid #ccc;
+	margin: 20px;
+	padding: 20px;
 }
+
+label{
+	font-size: 15px;
+	display:block;
+	width: 100%;
+	padding: 10px; 
+}
+
+input{
+	margin-bottom: 20px; 
+	width: 100%;
+	padding: 5px;
+	box-sizing: border-box;
+	border: 1px solid #ccc;
+}
+
