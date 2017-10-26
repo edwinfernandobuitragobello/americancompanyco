@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Categorias;
+use App\SubCategoria;
 use Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -52,35 +53,46 @@ class AdministradorController extends Controller
     //////////////////////////////////////////////
     public function subCategorias(Request $request)
     {
-        $categorias = Categorias::paginate(10);
-        return view('subCategoriasAdmin', compact('categorias'));
+        $categorias = Categorias::All();
+        $subCategorias = SubCategoria::with('categorias')->paginate(10);
+        return view('subCategoriasAdmin', compact('categorias','subCategorias'));
+    }
+    public function crear_subCategorias(Request $request)
+    {
+        $subCategoria = new SubCategoria();
+        $subCategoria->nombre_sub = $request->subCategoria;
+        $subCategoria->id_categoria_fk = $request->id_categoria_fk;
+        $subCategoria->activo_sub = 0;
+        $subCategoria->save();
+        return redirect()->back()->with('success', 'SubCategoria creada con exito');
     }
     public function editar_subCategorias(Request $request)
     {
-        $categoria = Categorias::find($request->id);
-        $categoria->nombre = $request->categoria;
-        $categoria->save();
-        return redirect()->back()->with('success', 'Categoria editada con exito');
+        $subCategoria = SubCategoria::find($request->id);
+        $subCategoria->nombre_sub = $request->subCategoria;
+        $subCategoria->id_categoria_fk = $request->id_categoria_fk;
+        $subCategoria->save();
+        return redirect()->back()->with('success', 'SubCategoria editada con exito');
     }
     public function activar_subCategorias($id)
     {
-        $categoria = Categorias::find($id);
-        $categoria->activo = 1;
-        $categoria->save();
-        return redirect()->back()->with('success', 'Categoria activada con exito');
+        $subCategoria = SubCategoria::find($id);
+        $subCategoria->activo_sub = 1;
+        $subCategoria->save();
+        return redirect()->back()->with('success', 'SubCategoria activada con exito');
     }
     public function desactivar_subCategorias($id)
     {
-        $categoria = Categorias::find($id);
-        $categoria->activo = 0;
-        $categoria->save();
-        return redirect()->back()->with('success', 'Categoria desactivada con exito');
+        $subCategoria = SubCategoria::find($id);
+        $subCategoria->activo_sub = 0;
+        $subCategoria->save();
+        return redirect()->back()->with('success', 'SubCategoria desactivada con exito');
     }
     public function eliminar_subCategorias($id)
     {
-        $categoria = Categorias::find($id);
-        $categoria->delete();
-        return redirect()->back()->with('success', 'Categoria eliminada con exito');
+        $subCategoria = SubCategoria::find($id);
+        $subCategoria->delete();
+        return redirect()->back()->with('success', 'SubCategoria eliminada con exito');
     }
     
 }

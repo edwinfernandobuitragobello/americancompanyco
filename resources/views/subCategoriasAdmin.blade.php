@@ -23,24 +23,24 @@
 								</div>
 								<div class="alert alert-danger" id="alert_error" style="display: none">
 							    	<p>Corrige el siguiente error:</p>
-							        <ul>
-							            <li>Escribe el nombre de la Sub-Categoría</li>
+							        <ul id="errores">
+							            
 							        </ul>
 							    </div>
-								<form class="form-horizontal" action="{{ url('/admin/crear_categoria') }}" method="POST" role="form">
+								<form class="form-horizontal" action="{{ url('/admin/crear_subCategorias') }}" method="POST" role="form">
 									<input type="hidden" name="_token" value="{{ csrf_token() }}">
 									<div class="form-group">
 										<label class="col-sm-5 control-label no-padding-right" for="form-field-1"> Nombre </label>
 
 										<div class="col-sm-7">
-											<input type="text" id="form-field-1" name="categoria" placeholder="Sub-Categoria" class="col-xs-10 col-sm-6" />
+											<input type="text" id="form-field-1" name="subCategoria" placeholder="Sub-Categoria" class="col-xs-10 col-sm-6" />
 										</div>
 										<br>
 
-										<label class="col-sm-5 control-label no-padding-right" for="form-field-select-3">Categoría</label>
+										<label class="col-sm-5 control-label no-padding-right" for="form-field-select-3">Sub-Categoría</label>
 										<br>
 										<div class="col-sm-7">
-											<select class=" chosen-select col-sm-6" id="form-field-select-3" data-placeholder="Choose a State...">
+											<select class=" chosen-select col-sm-6" data-placeholder="Selecionar categoría..." name="id_categoria_fk" id="id_categoria_fk">
 												<option value="">Selecione una categoría</option>
 												@foreach($categorias as $categoria)
 													<option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
@@ -50,7 +50,7 @@
 									</div>
 									<div class="clearfix form-actions">
 										<div class="col-md-offset-5 col-md-7">
-											<button class="btn btn-info" id="submit_categoria" type="submit">
+											<button class="btn btn-info" id="submit_subCategoria" type="submit">
 												<i class="ace-icon fa fa-check bigger-110"></i>
 												Crear
 											</button>
@@ -70,6 +70,7 @@
 									<thead>
 										<tr>
 											<th>Nombre</th>
+											<th>Categoría</th>
 											<th>
 												<i class="ace-icon fa fa-clock-o bigger-110"></i>
 												Actualizado
@@ -82,27 +83,29 @@
 
 									<tbody>
 										
-										@foreach($categorias as $categoria)
+										@foreach($subCategorias as $subCategoria)
 											<tr>
-												<td>{{ $categoria->nombre }}</td>
-												<td>{{ $categoria->updated_at }}</td>
+												<td>{{ $subCategoria->nombre_sub }}</td>
+												
+												<td>{{ $subCategoria->categorias->nombre }}</td>
+												<td>{{ $subCategoria->updated_at }}</td>
 												<td style="text-align: center;">
-														@if($categoria->activo==0)
-															<button id="submit_activar" class="btn btn-xs btn-success" onclick="submit_activar({{$categoria->id}})">
+														@if($subCategoria->activo_sub==0)
+															<button id="submit_activar" class="btn btn-xs btn-success" onclick="submit_activar({{$subCategoria->id_sub}})">
 															<i class="ace-icon fa fa-check bigger-120">  ACTIVAR</i>
 														@else
-															<button id="submit_desactivar" class="btn btn-xs btn-warning" onclick="submit_desactivar({{$categoria->id}})">
+															<button id="submit_desactivar" class="btn btn-xs btn-warning" onclick="submit_desactivar({{$subCategoria->id_sub}})">
 															<i class="ace-icon fa fa-close bigger-120">  DESACTIVAR</i>
 														@endif
 													</button>
 												</td>
 												<td style="text-align: center;">
-													<button class="btn btn-xs btn-info" data-toggle="modal" data-target="#myModal" onclick="modalOpen('{{$categoria->id}}' , '{{$categoria->nombre}}')">
+													<button class="btn btn-xs btn-info" data-toggle="modal" data-target="#myModal" onclick="modalOpen('{{$subCategoria->id_sub}}' , '{{$subCategoria->nombre_sub}}' , '{{$subCategoria->id_categoria_fk}}')">
 														<i class="ace-icon fa fa-pencil bigger-120">  EDITAR</i>
 													</button>
 												</td>
 												<td style="text-align: center;">
-													<button class="btn btn-xs btn-danger" onclick="submit_eliminar({{$categoria->id}})">
+													<button class="btn btn-xs btn-danger" onclick="submit_eliminar({{$subCategoria->id_sub}})">
 														<i class="ace-icon fa fa-trash-o bigger-120">  ELIMINAR</i>
 													</button>
 												</td>
@@ -111,7 +114,7 @@
 										
 									</tbody>
 								</table>
-								<div style="text-align: center">{{$categorias->links()}}</div> 
+								<div style="text-align: center">{{$subCategorias->links()}}</div> 
 							</div>
 							<!-- PAGE CONTENT ENDS -->
 						</div><!-- /.col -->
@@ -134,31 +137,41 @@
         </div>
         <div class="alert alert-danger" id="alert_error_edit" style="display: none">
 	    	<p>Corrige el siguiente error:</p>
-	        <ul>
-	            <li>Escribe el nombre de la categoria</li>
+	        <ul id="errores_edit">
+	            
 	        </ul>
 	    </div>
-        <form class="form-horizontal" action="{{ url('/admin/editar_categoria/') }}" method="POST" role="form">
+        <form class="form-horizontal" action="{{ url('/admin/editar_subCategorias/') }}" method="POST" role="form">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
-			<input type="hidden" id="id" name="id" value="">
+			<br>
 			<div class="form-group">
-				<br>
+				<input type="hidden" id="id" name="id" value="">
 				<label class="col-sm-4 control-label no-padding-right" for="form-field-1"> Nombre </label>
 
-				<div class="col-sm-7">
-					<input type="text" id="form-field-1_edit" name="categoria" placeholder="Categoria" class="col-xs-10 col-sm-9" value="" />
+				<div class="col-sm-8">
+					<input type="text" id="form-field-1_edit" name="subCategoria" placeholder="Sub-Categoria" class="col-xs-10 col-sm-6" />
+				</div>
+				<br>
+
+				<label class="col-sm-4 control-label no-padding-right" for="form-field-select-3">Sub-Categoría</label>
+				<br>
+				<div class="col-sm-8">
+					<select class=" chosen-select col-sm-6" data-placeholder="Selecionar categoría..." name="id_categoria_fk" id="id_categoria_fk_edit">
+						<option value="">Selecione una categoría</option>
+						@foreach($categorias as $categoria)
+							<option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+						@endforeach
+					</select>
 				</div>
 			</div>
-		
-	        <div class="modal-footer">
-	        	<button class="btn btn-info" id="editar_categoria" type="submit">
+			<div class="modal-footer">
+	        	<button class="btn btn-info" id="editar_subCategoria" type="submit">
 					<i class="ace-icon fa fa-check bigger-110"></i>
 					Editar
 				</button>
 	          <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
 	        </div>
-        </form>
-      </div>
+		</form>
       
     </div>
   </div>
@@ -169,16 +182,32 @@
 			<script type="text/javascript">
 	$(document).ready(function(){
 		//función click submit
-        $("#submit_categoria").click(function(){
+        $("#submit_subCategoria").click(function(){
             var nombre = $("#form-field-1").val();
-            if(nombre == ""){
+            var id_categoria_fk = $("#id_categoria_fk").val();
+            $('#errores').html('');
+            if((nombre == "") || (id_categoria_fk == "")){
+            	if ((nombre == "")) {
+            		$('#errores').append('<li>Escribe el nombre de la Sub-Categoría</li>');	
+            	}
+            	if (id_categoria_fk == "") {
+                	$('#errores').append('<li>Selecciona una Categoría</li>');
+                }
                 $('#alert_error').css('display','block');
                 return false;
             }
         });
-        $("#editar_categoria").click(function(){
+        $("#editar_subCategoria").click(function(){
             var nombre = $("#form-field-1_edit").val();
-            if(nombre == ""){
+            var id_categoria_fk = $("#id_categoria_fk_edit").val();
+            $('#errores_edit').html('');
+            if((nombre == "") || (id_categoria_fk == "")){
+            	if ((nombre == "")) {
+            		$('#errores_edit').append('<li>Escribe el nombre de la Sub-Categoría</li>');	
+            	}
+            	if (id_categoria_fk == "") {
+                	$('#errores_edit').append('<li>Selecciona una Categoría</li>');
+                }
                 $('#alert_error_edit').css('display','block');
                 return false;
             }
@@ -186,16 +215,17 @@
 	});
 	var url = "http://localhost/americancompanyco/public";
 	function submit_activar(id){
-    	window.location.href = url+"/admin/activar_categoria/"+id;
+    	window.location.href = url+"/admin/activar_subCategorias/"+id;
     }
     function submit_desactivar(id){
-    	window.location.href = url+"/admin/desactivar_categoria/"+id;
+    	window.location.href = url+"/admin/desactivar_subCategorias/"+id;
     }
     function submit_eliminar(id){
-    	window.location.href = url+"/admin/eliminar_categoria/"+id;
+    	window.location.href = url+"/admin/eliminar_subCategorias/"+id;
     }
-    function modalOpen(id,texto){
+    function modalOpen(id,texto,option){
     	$('#id').val(id);
     	$('#form-field-1_edit').val(texto);
+    	$('#id_categoria_fk_edit').val(option);
     }	
 </script>
