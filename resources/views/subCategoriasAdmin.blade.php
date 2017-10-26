@@ -8,7 +8,7 @@
 								<i class="ace-icon fa fa-home home-icon"></i>
 								<a href="#">Inicio</a>
 							</li>
-							<li class="active">Categorias</li>
+							<li class="active">Sub-Categorías</li>
 						</ul><!-- /.breadcrumb -->
 					</div>
 
@@ -18,13 +18,13 @@
 								<!-- PAGE CONTENT BEGINS -->
 								<div class="page-header">
 									<h1>
-										Crear categoria
+										Crear Sub-Categorías
 									</h1>
 								</div>
 								<div class="alert alert-danger" id="alert_error" style="display: none">
 							    	<p>Corrige el siguiente error:</p>
 							        <ul>
-							            <li>Escribe el nombre de la categoria</li>
+							            <li>Escribe el nombre de la Sub-Categoría</li>
 							        </ul>
 							    </div>
 								<form class="form-horizontal" action="{{ url('/admin/crear_categoria') }}" method="POST" role="form">
@@ -33,7 +33,19 @@
 										<label class="col-sm-5 control-label no-padding-right" for="form-field-1"> Nombre </label>
 
 										<div class="col-sm-7">
-											<input type="text" id="form-field-1" name="categoria" placeholder="Categoria" class="col-xs-10 col-sm-5" />
+											<input type="text" id="form-field-1" name="categoria" placeholder="Sub-Categoria" class="col-xs-10 col-sm-6" />
+										</div>
+										<br>
+
+										<label class="col-sm-5 control-label no-padding-right" for="form-field-select-3">Categoría</label>
+										<br>
+										<div class="col-sm-7">
+											<select class=" chosen-select col-sm-6" id="form-field-select-3" data-placeholder="Choose a State...">
+												<option value="">Selecione una categoría</option>
+												@foreach($categorias as $categoria)
+													<option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+												@endforeach
+											</select>
 										</div>
 									</div>
 									<div class="clearfix form-actions">
@@ -50,7 +62,7 @@
 							<!-- LISTA DE CATEGORIAS -->
 							<div class="page-header">
 								<h1>
-									Lista de categorias
+									Lista de Sub-categorias
 								</h1>
 							</div><!-- /.page-header -->
 							<div class="modal-body no-padding">

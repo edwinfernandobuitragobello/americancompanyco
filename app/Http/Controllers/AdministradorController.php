@@ -22,6 +22,13 @@ class AdministradorController extends Controller
         $categoria->save();
         return redirect()->back()->with('success', 'Categoria creada con exito');
     }
+    public function editar_categoria(Request $request)
+    {
+        $categoria = Categorias::find($request->id);
+        $categoria->nombre = $request->categoria;
+        $categoria->save();
+        return redirect()->back()->with('success', 'Categoria editada con exito');
+    }
     public function activar_categoria($id)
     {
         $categoria = Categorias::find($id);
@@ -41,6 +48,39 @@ class AdministradorController extends Controller
         $categoria = Categorias::find($id);
 		$categoria->delete();
 		return redirect()->back()->with('success', 'Categoria eliminada con exito');
+    }
+    //////////////////////////////////////////////
+    public function subCategorias(Request $request)
+    {
+        $categorias = Categorias::paginate(10);
+        return view('subCategoriasAdmin', compact('categorias'));
+    }
+    public function editar_subCategorias(Request $request)
+    {
+        $categoria = Categorias::find($request->id);
+        $categoria->nombre = $request->categoria;
+        $categoria->save();
+        return redirect()->back()->with('success', 'Categoria editada con exito');
+    }
+    public function activar_subCategorias($id)
+    {
+        $categoria = Categorias::find($id);
+        $categoria->activo = 1;
+        $categoria->save();
+        return redirect()->back()->with('success', 'Categoria activada con exito');
+    }
+    public function desactivar_subCategorias($id)
+    {
+        $categoria = Categorias::find($id);
+        $categoria->activo = 0;
+        $categoria->save();
+        return redirect()->back()->with('success', 'Categoria desactivada con exito');
+    }
+    public function eliminar_subCategorias($id)
+    {
+        $categoria = Categorias::find($id);
+        $categoria->delete();
+        return redirect()->back()->with('success', 'Categoria eliminada con exito');
     }
     
 }
