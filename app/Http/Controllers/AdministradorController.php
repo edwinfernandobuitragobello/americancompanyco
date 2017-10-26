@@ -94,5 +94,37 @@ class AdministradorController extends Controller
         $subCategoria->delete();
         return redirect()->back()->with('success', 'SubCategoria eliminada con exito');
     }
-    
+    ////////////////////////////////////////////
+    public function productos(Request $request)
+    {
+        $categorias = Categorias::All();
+        $subCategorias = SubCategoria::with('categorias')->paginate(10);
+        /*return view('subCategoriasAdmin', compact('categorias','subCategorias'));*/
+        return view('productosAdmin', compact('categorias','subCategorias'));
+    }
+    public function crear_producto(Request $request)
+    {
+        var_dump($request->content); return;
+        echo '<!DOCTYPE html>
+        <html>
+        <head>
+            <title></title>
+        </head>
+        <body>
+            <div">
+                '.$request->content.'
+            </div>
+            
+        </body>
+        </html>'; return;
+        $subCategoria = new SubCategoria();
+        $subCategoria->foto = $request->subCategoria;
+        $subCategoria->nombre_prod = $request->producto;
+        $subCategoria->descripcion_prod = $request->content;
+        $subCategoria->precio = $request->precio;
+        $subCategoria->id_subcategoria_fk = $request->id_subcategoria_fk;
+        $subCategoria->activo_prod = 0;
+        $subCategoria->save();
+        return redirect()->back()->with('success', 'SubCategoria creada con exito');
+    }
 }

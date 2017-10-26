@@ -26,6 +26,9 @@ Route::get('/admin/activar_subCategorias/{id?}','AdministradorController@activar
 Route::get('/admin/desactivar_subCategorias/{id?}','AdministradorController@desactivar_subCategorias');
 Route::get('/admin/eliminar_subCategorias/{id?}','AdministradorController@eliminar_subCategorias');
 
+Route::get('/admin/productos','AdministradorController@productos');
+Route::post('/admin/crear_producto','AdministradorController@crear_producto');
+
 Route::get('/pruebaformulario', function(){
 	return view('form_category');
 });
