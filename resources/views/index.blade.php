@@ -1,4 +1,4 @@
-@include('header');
+@include('header')
   <div class="main">
       <div class="content">
     	        <div class="content_top">
@@ -260,5 +260,5 @@
          </div>
       </div>
     </div>
-@include('footer');
+@include('footer')
 

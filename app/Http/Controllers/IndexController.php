@@ -11,11 +11,7 @@ class IndexController extends Controller
 {
     public function index()
     {
-    	$categorias = Categorias::All();
-    	// foreach ($projects as $key => $value) {
-    	// 	$value->Galery = Galery::select('*')->where('project_id', $value->id)->get();
-    	// }
-    	//var_dump($categorias); return;
+    	$categorias = Categorias::All()->where('activo',1);
     	return view('index', compact('categorias'));
     }
 }
