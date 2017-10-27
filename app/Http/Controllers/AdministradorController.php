@@ -8,6 +8,7 @@ use App\SubCategoria;
 use App\Productos;
 use Auth;
 use Illuminate\Support\Facades\DB;
+use File;
 
 class AdministradorController extends Controller
 {
@@ -46,9 +47,21 @@ class AdministradorController extends Controller
 		return redirect()->back()->with('success', 'Categoria desactivada con exito');
     }
     public function eliminar_categoria($id)
-    {
+    {   
+        //eliminar productos
+        $productos = Productos::where('id_categoria_fk',$id)->get();
+        foreach ($productos as $producto) {
+            File::delete('uploads/'.$producto->foto);
+        }
+        $productos = Productos::where('id_categoria_fk',$id);
+        $productos->delete();
+        //eliminar subcategoria
+        $subCategoria = SubCategoria::where('id_categoria_fk',$id);
+        $subCategoria->delete();
+        //eliminar categoria
         $categoria = Categorias::find($id);
 		$categoria->delete();
+
 		return redirect()->back()->with('success', 'Categoria eliminada con exito');
     }
     //////////////////////////////////////////////
@@ -91,6 +104,14 @@ class AdministradorController extends Controller
     }
     public function eliminar_subCategorias($id)
     {
+        //eliminar productos
+        $productos = Productos::where('id_categoria_fk',$id)->get();
+        foreach ($productos as $producto) {
+            File::delete('uploads/'.$producto->foto);
+        }
+        $productos = Productos::where('id_categoria_fk',$id);
+        $productos->delete();
+        //eliminar subcategoria
         $subCategoria = SubCategoria::find($id);
         $subCategoria->delete();
         return redirect()->back()->with('success', 'SubCategoria eliminada con exito');
@@ -98,33 +119,70 @@ class AdministradorController extends Controller
     ////////////////////////////////////////////
     public function productos(Request $request)
     {
+        $productos = Productos::with('sub_categorias')->join('categorias', 'productos.id_categoria_fk', '=', 'categorias.id')->paginate(10); // Notice the shares.* here
         $categorias = Categorias::All();
-        $subCategorias = SubCategoria::with('categorias')->get();
-
-        /*return view('subCategoriasAdmin', compact('categorias','subCategorias'));*/
-        return view('productosAdmin', compact('categorias','subCategorias'));
+        return view('productosAdmin', compact('categorias','productos'));
     }
     public function crear_producto(Request $request)
     {
-        $subCategoria = new Productos();
+        $producto = new Productos();
         if($request->hasFile('foto')){
             $filename = 'foto'.str_random(40).".".$request->file('foto')->getClientOriginalExtension();
             $request->file('foto')->move('uploads/', $filename);
-            $subCategoria->foto = $filename;
+            $producto->foto = $filename;
         }else{
-            $subCategoria->foto = "null";
+            $producto->foto = "null";
         }
-        $subCategoria->nombre_prod = $request->producto;
-        $subCategoria->descripcion_prod = $request->content;
-        $subCategoria->precio = $request->precio;
-        $subCategoria->id_subcategoria_fk = $request->id_subcategoria_fk;
-        $subCategoria->activo_prod = 0;
-        $subCategoria->save();
+        $producto->nombre_prod = $request->producto;
+        $producto->descripcion_prod = $request->content;
+        $producto->precio = $request->precio;
+        $producto->id_categoria_fk = $request->id_categoria_fk;
+        $producto->id_subcategoria_fk = $request->id_subcategoria_fk;
+        $producto->activo_prod = 0;
+        $producto->save();
+        return redirect()->back()->with('success', 'Producto creado con exito');
+    }
+    public function editar_producto(Request $request)
+    {
+        $producto = Productos::find($request->id);
+        if($request->hasFile('foto')){
+            $filename = 'foto'.str_random(40).".".$request->file('foto')->getClientOriginalExtension();
+            $request->file('foto')->move('uploads/', $filename);
+            File::delete('uploads/'.$producto->foto);
+            $producto->foto = $filename;
+        }
+        $producto->nombre_prod = $request->producto;
+        $producto->descripcion_prod = $request->content;
+        $producto->precio = $request->precio;
+        $producto->id_categoria_fk = $request->id_categoria_fk;
+        $producto->id_subcategoria_fk = $request->id_subcategoria_fk;
+        $producto->activo_prod = 0;
+        $producto->save();
         return redirect()->back()->with('success', 'Producto creado con exito');
     }
     public function obtenerSubCategorias($id)
     {
         $subCategorias = SubCategoria::where('id_categoria_fk',$id)->get();
         return $subCategorias;
+    }public function activar_producto($id)
+    {
+        $producto = Productos::find($id);
+        $producto->activo_prod = 1;
+        $producto->save();
+        return redirect()->back()->with('success', 'Producto activado con exito');
+    }
+    public function desactivar_producto($id)
+    {
+        $producto = Productos::find($id);
+        $producto->activo_prod = 0;
+        $producto->save();
+        return redirect()->back()->with('success', 'Producto desactivado con exito');
+    }
+    public function eliminar_producto($id)
+    {
+        $producto = Productos::find($id);
+        File::delete('uploads/'.$producto->foto);
+        $producto->delete();
+        return redirect()->back()->with('success', 'Producto eliminado con exito');
     }
 }

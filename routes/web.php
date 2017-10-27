@@ -28,7 +28,10 @@ Route::get('/admin/eliminar_subCategorias/{id?}','AdministradorController@elimin
 
 Route::get('/admin/productos','AdministradorController@productos');
 Route::post('/admin/crear_producto','AdministradorController@crear_producto');
-
+Route::post('/admin/editar_producto','AdministradorController@editar_producto');
+Route::get('/admin/activar_producto/{id?}','AdministradorController@activar_producto');
+Route::get('/admin/desactivar_producto/{id?}','AdministradorController@desactivar_producto');
+Route::get('/admin/eliminar_producto/{id?}','AdministradorController@eliminar_producto');
 Route::get('/admin/obtenerSubCategorias/{id?}','AdministradorController@obtenerSubCategorias');
 
 Route::get('/pruebaformulario', function(){

@@ -20,6 +20,7 @@ class CreateProductosTable extends Migration
             $table->longText('descripcion_prod');
             $table->string('precio');
             $table->integer('id_subcategoria_fk')->unsigned();
+            $table->integer('id_categoria_fk')->unsigned();
             $table->integer('activo_prod');
             $table->timestamps();
         });
