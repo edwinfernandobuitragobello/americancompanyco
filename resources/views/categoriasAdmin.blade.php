@@ -8,101 +8,122 @@
 								<i class="ace-icon fa fa-home home-icon"></i>
 								<a href="#">Inicio</a>
 							</li>
-							<li class="active">Categorias</li>
+							<li class="active">Categorías</li>
 						</ul><!-- /.breadcrumb -->
 					</div>
 
 					<div class="page-content">
-						<div class="row">
-							<div class="col-xs-12">
-								<!-- PAGE CONTENT BEGINS -->
-								<div class="page-header">
-									<h1>
-										Crear categoria
-									</h1>
+						<div class="widget-box collapsed">
+							<div class="widget-header">
+								<h4 class="widget-title">Crear Categorías</h4>
+
+								<div class="widget-toolbar">
+									<a href="#" data-action="collapse">
+										<i class="ace-icon fa fa-chevron-down"></i>
+									</a>
 								</div>
-								<div class="alert alert-danger" id="alert_error" style="display: none">
-							    	<p>Corrige el siguiente error:</p>
-							        <ul>
-							            <li>Escribe el nombre de la categoria</li>
-							        </ul>
-							    </div>
-								<form class="form-horizontal" action="{{ url('/admin/crear_categoria') }}" method="POST" role="form">
-									<input type="hidden" name="_token" value="{{ csrf_token() }}">
-									<div class="form-group">
-										<label class="col-sm-5 control-label no-padding-right" for="form-field-1"> Nombre </label>
+							</div>
+							<div class="widget-body" style="padding-left: 5%">
+								<div class="row">
+									<div class="col-xs-11">
+										<!-- PAGE CONTENT BEGINS -->
+										<br>
+										<div class="alert alert-danger" id="alert_error" style="display: none">
+									    	<p>Corrige el siguiente error:</p>
+									        <ul>
+									            <li>Escribe el nombre de la categoría</li>
+									        </ul>
+									    </div>
+										<form class="form-horizontal" action="{{ url('/admin/crear_categoria') }}" method="POST" role="form">
+											<input type="hidden" name="_token" value="{{ csrf_token() }}">
+											<div class="form-group">
+												<label class="col-sm-5 control-label no-padding-right" for="form-field-1"> Nombre </label>
 
-										<div class="col-sm-7">
-											<input type="text" id="form-field-1" name="categoria" placeholder="Categoria" class="col-xs-10 col-sm-5" />
+												<div class="col-sm-7">
+													<input type="text" id="form-field-1" name="categoria" placeholder="Categoría" class="col-xs-10 col-sm-5" />
+												</div>
+											</div>
+											<div class="clearfix form-actions">
+												<div class="col-md-offset-5 col-md-7">
+													<button class="btn btn-info" id="submit_categoria" type="submit">
+														<i class="ace-icon fa fa-check bigger-110"></i>
+														Crear
+													</button>
+												</div>
+											</div>
+											<div class="hr hr-24"></div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="widget-box">
+							<div class="widget-header">
+								<h4 class="widget-title">Lista de Categorías</h4>
+
+								<div class="widget-toolbar">
+									<a href="#" data-action="collapse">
+										<i class="ace-icon fa fa-chevron-up"></i>
+									</a>
+								</div>
+							</div>
+							<div class="widget-body" >
+								<div class="row">
+									<div class="col-xs-12">
+										<!-- LISTA DE CATEGORIAS -->
+										
+										<div class="modal-body no-padding">
+											<table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+												<thead>
+													<tr>
+														<th>Nombre</th>
+														<th>
+															<i class="ace-icon fa fa-clock-o bigger-110"></i>
+															Actualizado
+														</th>
+														<th></th>
+														<th></th>
+														<th></th>
+													</tr>
+												</thead>
+
+												<tbody>
+													
+													@foreach($categorias as $categoria)
+														<tr>
+															<td>{{ $categoria->nombre }}</td>
+															<td>{{ $categoria->updated_at }}</td>
+															<td style="text-align: center;">
+																	@if($categoria->activo==0)
+																		<button id="submit_activar" class="btn btn-xs btn-success" onclick="submit_activar({{$categoria->id}})">
+																		<i class="ace-icon fa fa-check bigger-120">  ACTIVAR</i>
+																	@else
+																		<button id="submit_desactivar" class="btn btn-xs btn-warning" onclick="submit_desactivar({{$categoria->id}})">
+																		<i class="ace-icon fa fa-close bigger-120">  DESACTIVAR</i>
+																	@endif
+																</button>
+															</td>
+															<td style="text-align: center;">
+																<button class="btn btn-xs btn-info" data-toggle="modal" data-target="#myModal" onclick="modalOpen('{{$categoria->id}}' , '{{$categoria->nombre}}')">
+																	<i class="ace-icon fa fa-pencil bigger-120">  EDITAR</i>
+																</button>
+															</td>
+															<td style="text-align: center;">
+																<button class="btn btn-xs btn-danger" onclick="submit_eliminar({{$categoria->id}})">
+																	<i class="ace-icon fa fa-trash-o bigger-120">  ELIMINAR</i>
+																</button>
+															</td>
+														</tr>
+													@endforeach
+													
+												</tbody>
+											</table>
+											<div style="text-align: center">{{$categorias->links()}}</div> 
 										</div>
 									</div>
-									<div class="clearfix form-actions">
-										<div class="col-md-offset-5 col-md-7">
-											<button class="btn btn-info" id="submit_categoria" type="submit">
-												<i class="ace-icon fa fa-check bigger-110"></i>
-												Crear
-											</button>
-										</div>
-									</div>
-									<div class="hr hr-24"></div>
-								</form>
+								</div>
 							</div>
-							<!-- LISTA DE CATEGORIAS -->
-							<div class="page-header">
-								<h1>
-									Lista de categorias
-								</h1>
-							</div><!-- /.page-header -->
-							<div class="modal-body no-padding">
-								<table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
-									<thead>
-										<tr>
-											<th>Nombre</th>
-											<th>
-												<i class="ace-icon fa fa-clock-o bigger-110"></i>
-												Actualizado
-											</th>
-											<th></th>
-											<th></th>
-											<th></th>
-										</tr>
-									</thead>
-
-									<tbody>
-										
-										@foreach($categorias as $categoria)
-											<tr>
-												<td>{{ $categoria->nombre }}</td>
-												<td>{{ $categoria->updated_at }}</td>
-												<td style="text-align: center;">
-														@if($categoria->activo==0)
-															<button id="submit_activar" class="btn btn-xs btn-success" onclick="submit_activar({{$categoria->id}})">
-															<i class="ace-icon fa fa-check bigger-120">  ACTIVAR</i>
-														@else
-															<button id="submit_desactivar" class="btn btn-xs btn-warning" onclick="submit_desactivar({{$categoria->id}})">
-															<i class="ace-icon fa fa-close bigger-120">  DESACTIVAR</i>
-														@endif
-													</button>
-												</td>
-												<td style="text-align: center;">
-													<button class="btn btn-xs btn-info" data-toggle="modal" data-target="#myModal" onclick="modalOpen('{{$categoria->id}}' , '{{$categoria->nombre}}')">
-														<i class="ace-icon fa fa-pencil bigger-120">  EDITAR</i>
-													</button>
-												</td>
-												<td style="text-align: center;">
-													<button class="btn btn-xs btn-danger" onclick="submit_eliminar({{$categoria->id}})">
-														<i class="ace-icon fa fa-trash-o bigger-120">  ELIMINAR</i>
-													</button>
-												</td>
-											</tr>
-										@endforeach
-										
-									</tbody>
-								</table>
-								<div style="text-align: center">{{$categorias->links()}}</div> 
-							</div>
-							<!-- PAGE CONTENT ENDS -->
-						</div><!-- /.col -->
+						</div><!-- PAGE CONTENT ENDS -->
 					</div><!-- /.row -->
 				</div><!-- /.page-content -->
 			</div>

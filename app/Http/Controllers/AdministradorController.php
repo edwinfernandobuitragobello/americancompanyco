@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Categorias;
 use App\SubCategoria;
+use App\Productos;
 use Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -98,33 +99,32 @@ class AdministradorController extends Controller
     public function productos(Request $request)
     {
         $categorias = Categorias::All();
-        $subCategorias = SubCategoria::with('categorias')->paginate(10);
+        $subCategorias = SubCategoria::with('categorias')->get();
+
         /*return view('subCategoriasAdmin', compact('categorias','subCategorias'));*/
         return view('productosAdmin', compact('categorias','subCategorias'));
     }
     public function crear_producto(Request $request)
     {
-        var_dump($request->content); return;
-        echo '<!DOCTYPE html>
-        <html>
-        <head>
-            <title></title>
-        </head>
-        <body>
-            <div">
-                '.$request->content.'
-            </div>
-            
-        </body>
-        </html>'; return;
-        $subCategoria = new SubCategoria();
-        $subCategoria->foto = $request->subCategoria;
+        $subCategoria = new Productos();
+        if($request->hasFile('foto')){
+            $filename = 'foto'.str_random(40).".".$request->file('foto')->getClientOriginalExtension();
+            $request->file('foto')->move('uploads/', $filename);
+            $subCategoria->foto = $filename;
+        }else{
+            $subCategoria->foto = "null";
+        }
         $subCategoria->nombre_prod = $request->producto;
         $subCategoria->descripcion_prod = $request->content;
         $subCategoria->precio = $request->precio;
         $subCategoria->id_subcategoria_fk = $request->id_subcategoria_fk;
         $subCategoria->activo_prod = 0;
         $subCategoria->save();
-        return redirect()->back()->with('success', 'SubCategoria creada con exito');
+        return redirect()->back()->with('success', 'Producto creado con exito');
+    }
+    public function obtenerSubCategorias($id)
+    {
+        $subCategorias = SubCategoria::where('id_categoria_fk',$id)->get();
+        return $subCategorias;
     }
 }
