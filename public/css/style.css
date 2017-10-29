@@ -46,7 +46,7 @@ body {
 	-ms-transition:all .2s linear;
 }
 .header {
-	background:#23272a;
+	background:#005596;
 	padding:20px 0;
 }
 .header_top {
@@ -1527,3 +1527,4 @@ body {
    	text-align:center;
    }
 }
+
