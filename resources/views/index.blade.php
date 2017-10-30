@@ -1,4 +1,29 @@
 @include('header')
+<style type="text/css">
+	.nav1 li a:hover {
+		color:#ffffff;
+		background-color: #005596;
+	}
+	
+	.nav1 li ul {
+		display:none;
+		position:absolute;
+	}
+	
+	.nav1 li:hover > ul {
+		display:block;
+		padding:0 10px;
+		z-index: 9999999;
+		color:#ffffff;
+		background-color: #005596;
+	}
+	
+	.nav1 li ul li {
+		position:relative;
+
+	}
+	
+</style>
   <div class="main">
       <div class="content">
     	        <div class="content_top">
@@ -35,12 +60,19 @@
     	    <div class="wrap">
     	    	<div class="content-bottom-left">
     	    		<div class="categories">
-						   <ul>
+						   <ul class="nav1">
 						  	   <h3>Browse All Categories</h3>
-						  	   		@foreach($categorias as $categoria)
-										<li><a href="#">{{ $categoria->nombre }}</a></li>
-									@endforeach
-						  	 </ul>
+					  	   		@foreach($categorias as $categoria)
+									<li>
+										<a href="#">{{ $categoria->nombre }}</a>
+										<ul>
+											@foreach($categoria->sub_categorias as $sub_categoria)
+												<li><a href="#">{{$sub_categoria->nombre_sub}}</a></li>
+											@endforeach
+										</ul>
+									</li>
+								@endforeach
+						  	</ul>
 						</div>		
 						<div class="buters-guide">
 						<h3>Buyers Guide</h3>
