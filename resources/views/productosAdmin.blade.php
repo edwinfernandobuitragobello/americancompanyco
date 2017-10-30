@@ -385,9 +385,9 @@
             	$("#id_subcategoria_fk_edit").html('<option value="">Selecione una Sub-Categoría</option>');
                 for (var i = 0; i < data.length; i++) {
                 	if (option_sub==data[i].id_sub) {
-                		$("#id_subcategoria_fk_edit").append('<option value="1'+data[i].id_sub+'" selected="selected">'+data[i].nombre_sub+'</option>')
+                		$("#id_subcategoria_fk_edit").append('<option value="'+data[i].id_sub+'" selected="selected">'+data[i].nombre_sub+'</option>')
                 	}else{
-                		$("#id_subcategoria_fk_edit").append('<option value="2'+data[i].id_sub+'">'+data[i].nombre_sub+'</option>')
+                		$("#id_subcategoria_fk_edit").append('<option value="'+data[i].id_sub+'">'+data[i].nombre_sub+'</option>')
                 	}
                 	
                 }
