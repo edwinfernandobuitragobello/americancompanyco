@@ -14,7 +14,7 @@ class IndexController extends Controller
     	//$categorias = Categorias::All()->where('activo',1);
     	$categorias = Categorias::with(['sub_categorias' => function ($query) {
 		    $query->where('activo_sub', '=', '1');
-		}])->get();
+		}])->where('activo',1)->get();
 		//echo json_encode($categorias[0]->sub_categorias); return;
     	return view('index', compact('categorias'));
     }

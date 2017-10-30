@@ -1527,3 +1527,26 @@ body {
    	text-align:center;
    }
 }
+/*ESTILOS DEL MENU DESPLECABLE CATEGORIAS*/
+.nav1 li a:hover {
+		color:#ffffff;
+		background-color: #005596;
+	}
+	
+	.nav1 li ul {
+		display:none;
+		position:absolute;
+	}
+	
+	.nav1 li:hover > ul {
+		display:block;
+		padding:0 10px;
+		z-index: 9999999;
+		color:#ffffff;
+		background-color: #005596;
+	}
+	
+	.nav1 li ul li {
+		position:relative;
+
+	}

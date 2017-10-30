@@ -1,29 +1,4 @@
 @include('header')
-<style type="text/css">
-	.nav1 li a:hover {
-		color:#ffffff;
-		background-color: #005596;
-	}
-	
-	.nav1 li ul {
-		display:none;
-		position:absolute;
-	}
-	
-	.nav1 li:hover > ul {
-		display:block;
-		padding:0 10px;
-		z-index: 9999999;
-		color:#ffffff;
-		background-color: #005596;
-	}
-	
-	.nav1 li ul li {
-		position:relative;
-
-	}
-	
-</style>
   <div class="main">
       <div class="content">
     	        <div class="content_top">
