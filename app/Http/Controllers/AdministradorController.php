@@ -41,6 +41,21 @@ class AdministradorController extends Controller
     }
     public function desactivar_categoria($id)
     {
+        //desactivar productos
+        $productos = Productos::where('id_categoria_fk',$id)->get();
+        foreach ($productos as $producto) {
+            $producto = Productos::find($producto->id_prod);
+            $producto->activo_prod = 0;
+            $producto->save();
+        }
+        //desactivar subcategorias
+        $subCategorias = SubCategoria::where('id_categoria_fk',$id)->get();
+        foreach ($subCategorias as $subCategoria) {
+            $subCategoria = SubCategoria::find($subCategoria->id_sub);
+            $subCategoria->activo_sub = 0;
+            $subCategoria->save();
+        }
+
         $categoria = Categorias::find($id);
 		$categoria->activo = 0;
 		$categoria->save();
@@ -97,6 +112,13 @@ class AdministradorController extends Controller
     }
     public function desactivar_subCategorias($id)
     {
+        //desactivar productos
+        $productos = Productos::where('id_subcategoria_fk',$id)->get();
+        foreach ($productos as $producto) {
+            $producto = Productos::find($producto->id_prod);
+            $producto->activo_prod = 0;
+            $producto->save();
+        }
         $subCategoria = SubCategoria::find($id);
         $subCategoria->activo_sub = 0;
         $subCategoria->save();
