@@ -164,11 +164,10 @@
 														</td>
 													</tr>
 												@endforeach
-												
 											</tbody>
 										</table>
-										<div style="text-align: center">{{$productos->links()}}</div> 
 									</div>
+									<div style="text-align: center">{{$productos->links()}}</div>
 								</div>
 							<!-- PAGE CONTENT ENDS -->
 						</div><!-- /.col -->

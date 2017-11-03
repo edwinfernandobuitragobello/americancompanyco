@@ -3,7 +3,7 @@
       <div class="content">
     	        <div class="content_top">
     	        	<div class="wrap">
-		          	   <h3>Latest Products</h3>
+		          	   <h3>Últimos Productos</h3>
 		          	</div>
 		          	<div class="line"> </div>
 		          	<div class="wrap">
@@ -11,7 +11,7 @@
 	      				<div class="ocarousel example_photos" data-ocarousel-perscroll="3">
 			                <div class="ocarousel_window">
 			                	@foreach($productos as $producto)
-			                   		<a href="#" title="img1"> <img src="uploads/{{$producto->foto}}" width="100px" height="100px" alt="" /><p>{{$producto->nombre_prod}}</p></a>
+			                   		<a href="#" title="img1"> <img src="uploads/{{$producto->foto}}" width="100px" height="100px" alt="" /><p><?php echo str_limit( $producto->nombre_prod ,15); ?></p></a>
 		                   		@endforeach
 			                </div>
 			               <span>           
@@ -27,7 +27,7 @@
     	    	<div class="content-bottom-left">
     	    		<div class="categories">
 						   <ul class="nav1">
-						  	   <h3>Browse All Categories</h3>
+						  	   <h3>Categorías</h3>
 					  	   		@foreach($categorias as $categoria)
 									<li>
 										<a href="#">{{ $categoria->nombre }}</a>
@@ -64,175 +64,25 @@
     	    	</div>
     	    	
     	    	<div class="content-bottom-right">
-    	    	<h3>Browse All Categories</h3>
+    	    	<h3>Sub-Categoría -> {{$subCategoria->nombre_sub}}</h3>
 	            <div class="section group">
-				  <div class="grid_1_of_4 images_1_of_4">
-					 <h4><a href="preview.html">Whirlpool LTE5243D 3.4 CuFt.... </a></h4>
-					  <a href="preview.html"><img src="images/product-img1.jpg" alt="" /></a>
-					  <div class="price-details">
-				       <div class="price-number">
-							<p><span class="rupees">$839.93 </span></p>
-					    </div>
+	            	@foreach($productos_all as $producto_all)
+						<div class="grid_1_of_4 images_1_of_4">
+						 	<h4><a href="preview.html"><?php echo str_limit( $producto_all->nombre_prod ,23); ?></a></h4>
+						  	<a href="preview.html"><img width="120px" height="120px" src="uploads/{{$producto_all->foto}}" alt="" /></a>
+						  	<div class="price-details">
+						       	<div class="price-number">
+									<p><span class="rupees">$ {{$producto_all->precio}}</span></p>
+							    </div>
 					       		<div class="add-cart">								
-									<h4><a href="preview.html">More Info</a></h4>
-							     </div>
-							 <div class="clear"></div>
-					</div>					 
-				</div>
-				<div class="grid_1_of_4 images_1_of_4">
-					<h4><a href="preview.html">Whirlpool LTE5243D 3.4 CuFt.... </a></h4>
-					 <a href="preview.html"><img src="images/product-img2.jpg" alt="" /></a>
-					<div class="price-details">
-				       <div class="price-number">
-							<p><span class="rupees">$839.93 </span></p>
-					    </div>
-					       		<div class="add-cart">								
-									<h4><a href="preview.html">More Info</a></h4>
-							     </div>
-							 <div class="clear"></div>
-					</div>
-					 
-				</div>
-				<div class="grid_1_of_4 images_1_of_4">
-					<h4><a href="preview.html">Whirlpool LTE5243D 3.4 CuFt.... </a></h4>
-					<a href="preview.html"><img src="images/product-img3.jpg" alt="" /></a>
-					<div class="price-details">
-				       <div class="price-number">
-							<p><span class="rupees">$839.93 </span></p>
-					    </div>
-					       		<div class="add-cart">								
-									<h4><a href="preview.html">More Info</a></h4>
-							     </div>
-							 <div class="clear"></div>
-					</div>
-				    
-				</div>
-				<div class="grid_1_of_4 images_1_of_4">
-					<h4><a href="preview.html">Whirlpool LTE5243D 3.4 CuFt.... </a></h4>
-					<a href="preview.html"><img src="images/product-img4.jpg" alt="" /></a>
-					 <div class="price-details">
-				       <div class="price-number">
-							<p><span class="rupees">$839.93 </span></p>
-					    </div>
-					       		<div class="add-cart">								
-									<h4><a href="preview.html">More Info</a></h4>
-							     </div>
-							 <div class="clear"></div>
-					</div>
-				 </div>
-			   </div>
-			   <div class="section group">
-				<div class="grid_1_of_4 images_1_of_4">
-					 <h4><a href="preview.html">Whirlpool LTE5243D 3.4 CuFt.... </a></h4>
-					  <a href="preview.html"><img src="images/product-img1.jpg" alt="" /></a>
-					  <div class="price-details">
-				       <div class="price-number">
-							<p><span class="rupees">$839.93 </span></p>
-					    </div>
-					       		<div class="add-cart">								
-									<h4><a href="preview.html">More Info</a></h4>
-							     </div>
-							 <div class="clear"></div>
-					</div>					 
-				</div>
-				<div class="grid_1_of_4 images_1_of_4">
-					<h4><a href="preview.html">Whirlpool LTE5243D 3.4 CuFt.... </a></h4>
-					 <a href="preview.html"><img src="images/product-img2.jpg" alt="" /></a>
-					<div class="price-details">
-				       <div class="price-number">
-							<p><span class="rupees">$839.93 </span></p>
-					    </div>
-					       		<div class="add-cart">								
-									<h4><a href="preview.html">More Info</a></h4>
-							     </div>
-							 <div class="clear"></div>
-					</div>
-					 
-				</div>
-				<div class="grid_1_of_4 images_1_of_4">
-					<h4><a href="preview.html">Whirlpool LTE5243D 3.4 CuFt.... </a></h4>
-					<a href="preview.html"><img src="images/product-img3.jpg" alt="" /></a>
-					<div class="price-details">
-				       <div class="price-number">
-							<p><span class="rupees">$839.93 </span></p>
-					    </div>
-					       		<div class="add-cart">								
-									<h4><a href="preview.html">More Info</a></h4>
-							     </div>
-							 <div class="clear"></div>
-					</div>
-				    
-				</div>
-				<div class="grid_1_of_4 images_1_of_4">
-					<h4><a href="preview.html">Whirlpool LTE5243D 3.4 CuFt.... </a></h4>
-					<a href="preview.html"><img src="images/product-img4.jpg" alt="" /></a>
-					 <div class="price-details">
-				       <div class="price-number">
-							<p><span class="rupees">$839.93 </span></p>
-					    </div>
-					       		<div class="add-cart">								
-									<h4><a href="preview.html">More Info</a></h4>
-							     </div>
-							 <div class="clear"></div>
-					</div>
-				 </div>
-			   </div>
-			   <div class="section group">
-				<div class="grid_1_of_4 images_1_of_4">
-					 <h4><a href="preview.html">Whirlpool LTE5243D 3.4 CuFt.... </a></h4>
-					  <a href="preview.html"><img src="images/product-img1.jpg" alt="" /></a>
-					  <div class="price-details">
-				       <div class="price-number">
-							<p><span class="rupees">$839.93 </span></p>
-					    </div>
-					       		<div class="add-cart">								
-									<h4><a href="preview.html">More Info</a></h4>
-							     </div>
-							 <div class="clear"></div>
-					</div>					 
-				</div>
-				<div class="grid_1_of_4 images_1_of_4">
-					<h4><a href="preview.html">Whirlpool LTE5243D 3.4 CuFt.... </a></h4>
-					 <a href="preview.html"><img src="images/product-img2.jpg" alt="" /></a>
-					<div class="price-details">
-				       <div class="price-number">
-							<p><span class="rupees">$839.93 </span></p>
-					    </div>
-					       		<div class="add-cart">								
-									<h4><a href="preview.html">More Info</a></h4>
-							     </div>
-							 <div class="clear"></div>
-					</div>
-					 
-				</div>
-				<div class="grid_1_of_4 images_1_of_4">
-					<h4><a href="preview.html">Whirlpool LTE5243D 3.4 CuFt.... </a></h4>
-					<a href="preview.html"><img src="images/product-img3.jpg" alt="" /></a>
-					<div class="price-details">
-				       <div class="price-number">
-							<p><span class="rupees">$839.93 </span></p>
-					    </div>
-					       		<div class="add-cart">								
-									<h4><a href="preview.html">More Info</a></h4>
-							     </div>
-							 <div class="clear"></div>
-					</div>
-				    
-				</div>
-				<div class="grid_1_of_4 images_1_of_4">
-					<h4><a href="preview.html">Whirlpool LTE5243D 3.4 CuFt.... </a></h4>
-					<a href="preview.html"><img src="images/product-img4.jpg" alt="" /></a>
-					 <div class="price-details">
-				       <div class="price-number">
-							<p><span class="rupees">$839.93 </span></p>
-					    </div>
-					       		<div class="add-cart">								
-									<h4><a href="preview.html">More Info</a></h4>
-							     </div>
-							 <div class="clear"></div>
-					</div>
-				 </div>
+									<h4><a href="preview.html">Ver más</a></h4>
+							    </div>
+								<div class="clear"></div>
+							</div>					 
+						</div>
+					@endforeach
 			    </div>
+			    <div style="text-align: center">{{$productos_all->links()}}</div> 
 			    <div class="product-articles">
 			      <h3>Browse All Categories</h3>
 			      <ul>
