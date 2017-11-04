@@ -64,7 +64,7 @@
     	    	</div>
     	    	
     	    	<div class="content-bottom-right">
-    	    	<h3>Sub-Categoría -> {{$subCategoria->nombre_sub}}</h3>
+    	    	<h3>Sub-Categoría -> <?php if(isset($subCategoria->nombre_sub)) echo $subCategoria->nombre_sub; ?></h3>
 	            <div class="section group">
 	            	@foreach($productos_all as $producto_all)
 						<div class="grid_1_of_4 images_1_of_4">
