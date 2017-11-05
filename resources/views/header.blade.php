@@ -6,7 +6,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE HTML>
 <head>
-<title>Free Ecomm Template Website Template | Home :: w3layouts</title>
+<title>American Company</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
@@ -22,11 +22,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   	  		<div class="wrap">
 				<div class="header_top">
 					<div class="logo">
-						<a href="index.html"><img src="images/logo.png" alt="" /></a>
+						<a href="/"><img width="50%" src="images/logo.png" alt="" /></a>
 					</div>
 					<div class="header_top_right">
 						  <div class="search_box">
-						  	<span>Search</span>
+						  	<span>Buscar</span>
 				     		<form>
 				     			<input type="text" value=""><input type="submit" value="">
 				     		</form>
@@ -39,10 +39,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   		    	<a class="toggleMenu" href="#">Menu</a>
 					<ul class="nav">
 						<li>
-							<a href="index.html">Home</a>
+							<a href="index.html">Inicio</a>
 						</li>
 						<li  class="test">
-							<a href="#">Appliances</a>
+							<a href="#">Aplicaciones</a>
 							<ul>
 								<li>
 									<a href="#">Cookware</a>

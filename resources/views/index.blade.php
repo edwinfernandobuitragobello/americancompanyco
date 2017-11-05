@@ -33,7 +33,7 @@
 										<a href="#">{{ $categoria->nombre }}</a>
 										<ul>
 											@foreach($categoria->sub_categorias as $sub_categoria)
-												<li><a href="#">{{$sub_categoria->nombre_sub}}</a></li>
+												<li><a href="{{$sub_categoria->id_sub}}">{{$sub_categoria->nombre_sub}}</a></li>
 											@endforeach
 										</ul>
 									</li>
@@ -45,26 +45,10 @@
 						<p><span>We want you to be happy with your purchase.</span></p>	
 						<p>So we're committed to giving you all the tools to make the right decision with minimum fuss. </p>
 					  </div>	
-					  <div class="add-banner">
-					  	<img src="images/camera.png" alt="" />
-					  	<div class="banner-desc">
-					  		<h4>Electronics</h4>
-					  	    <a href="#">More Info</a>
-					  	</div>
-					  	<div class="clear"></div>
-					  </div>
-					    <div class="add-banner add-banner2">
-					  	<img src="images/computer.png" alt="" />
-					  	<div class="banner-desc">
-					  		<h4>Computers</h4>
-					  	    <a href="#">More Info</a>
-					  	</div>
-					  	<div class="clear"></div>
-					  </div>
     	    	</div>
     	    	
     	    	<div class="content-bottom-right">
-    	    	<h3>Sub-Categoría -> <?php if(isset($subCategoria->nombre_sub)) echo $subCategoria->nombre_sub; ?></h3>
+    	    	<h3>Sub-Categoría  <?php if(isset($subCategoria->nombre_sub)) echo " -> ".$subCategoria->nombre_sub; ?></h3>
 	            <div class="section group">
 	            	@foreach($productos_all as $producto_all)
 						<div class="grid_1_of_4 images_1_of_4">
@@ -81,6 +65,11 @@
 							</div>					 
 						</div>
 					@endforeach
+					<?php if (count($productos_all)==0) {
+						echo '<div class="grid_1_of_4 images_1_of_4">
+						 		<h4>No se encontraron productos relacionados en esta Sub-Categoría.</h4>
+							  </div>';
+					}?>
 			    </div>
 			    <div style="text-align: center">{{$productos_all->links()}}</div> 
 			    <div class="product-articles">

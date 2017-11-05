@@ -60,11 +60,11 @@ body {
 	padding-top:10px;
 }
 .search_box span{
-   color:#5b5b5b;
+   color:#ffffff;
    margin-right:10px;
 }
 .search_box form{
-	 background:#151719;
+	 background:#ffffff;
 	 position: relative;
 	 display:inline-block;
 	 padding-left:18px;
@@ -75,14 +75,13 @@ body {
 	left:0;
 	border-width:18px 0px 18px 18px;
 	border-style:solid;
-	border-color:rgba(255, 0, 0, 0) rgba(0, 0, 255, 0) rgba(0, 128, 0, 0) #23272a;
+	border-color:rgba(255, 0, 0, 0) rgba(0, 0, 255, 0) rgba(0, 128, 0, 0) #5b5b5b;
 }
 .search_box form input[type="text"] {
 	border: none;
 	outline: none;
 	background: none;
 	font-size:0.85em;
-	color: #acacac;
 	font-family: 'Ubuntu Condensed', sans-serif;
 	width:70%;
 	padding:10px;
@@ -102,7 +101,7 @@ body {
 }
 /** Navigation **/
 .navigation{
-	background:#e44f2b;
+	background:#ffffff;
 	padding:5px 0;
 	position:relative;
 }
@@ -134,8 +133,9 @@ body {
 .nav {
     list-style: none;
      *zoom: 1;
-     background:#e44f2b;
-     border-bottom:1px solid #DB3C15;
+     background:#ffffff;
+     border-bottom:1px solid #005596;
+     border-top:1px solid #005596;
 }
 .nav:before,
 .nav:after {
@@ -151,15 +151,14 @@ body {
 }
 .nav a {
     padding:16px 33px;
-    color:#ffb29f;
-    border-top:1px solid #DB3C15;
+    color:#005596;
     -webkit-transition: all 0.3s ease-in-out;
 	-moz-transition: all 0.3s ease-in-out;
 	-o-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
 }
 .nav a:hover {
-	color:#FFF;
+	color:#0090ff;
 }
 .nav li {
     position: relative;
@@ -191,15 +190,15 @@ body {
 }
 .nav li li a {
     display: block;
-    background:#EA5E3C;
+    background:#ffffff;
     position: relative;
     z-index:100;
-    border-top:1px solid #EF7A5D;
+    border-top:1px solid #005596;
     padding:10px;
     font-size:15px;
 }
 .nav li li a:hover {
-	  background:#DB502E;
+	  background:#005596;
 }
 .nav li li li a {
     background:#ED6A4A;
@@ -246,7 +245,7 @@ body {
 	width:50%;
 }
 .slider-text h2{
-	color:#e44f2b;
+	color:#ffffff;
 	font-size:40px;
 }
 .slider-text p{
@@ -302,7 +301,7 @@ body {
 }
 .content_top h3{
 	font-size:25px;
-	color:#e44f2b;
+	color:#005596;
 	padding-bottom:15px;
 }
 .line{
@@ -328,7 +327,7 @@ body {
 	width:30px;
 	height:30px;
 	text-align:center;
-	background:#e44f2b url("../images/arrows.png") no-repeat;
+	background:#005596 url("../images/arrows.png") no-repeat;
 	border-radius:2em;
 	-webkit-border-radius:2em;
 	-moz-border-radius:2em;
@@ -367,12 +366,12 @@ body {
 .ocarousel_window_slides a p{
   display:block;
   font-size:14px;
-  color:#a5a5a5;
+  color:#005596;
   float:none;
   text-align:center;	
 }
 .ocarousel_window_slides a:hover p{
- color:#e44f2b;
+ color:#005596;
  text-decoration:underline;
 }
 .ocarousel_indicators {
@@ -398,7 +397,7 @@ body {
 	color:#FFF;
 	padding:10px;
 	padding-left:25px;
-	background:#e44f2b;
+	background:#005596;
 	position:relative;
 	margin-bottom:5px;
 }
@@ -412,7 +411,7 @@ body {
 	border-color: rgba(255, 0, 0, 0) rgba(0, 0, 255, 0) rgba(0, 128, 0, 0) #ebebeb;
 }
 .content-bottom-right h3,.preview-page h3{
-	background:#23272a !important;
+	background:#005596 !important;
 	margin-bottom:10px !important;
 	padding-left:10px !important;
 }
@@ -429,7 +428,7 @@ body {
 	display:block;
 	font-size:15px;
 	padding:10px 15px;
-    color: #9C9C9C;
+    color: #23272a ;
     background:url(../images/drop_arrow.png) no-repeat 0;
     border-bottom:1px solid #D6D6D6;
 }
@@ -449,7 +448,7 @@ body {
 	padding:8px 0;
 }
 .buters-guide p span{
-	color:#e44f2b;
+	color:#005596;
 	font-size:16px;
 }
 .add-banner{
@@ -525,7 +524,7 @@ body {
 	max-width: 100%;
 }
 .images_1_of_4  h4  a{
-	color:#e44f2b;
+	color:#005596;
 	font-size:16px;
 	padding-bottom:5px;
 }
@@ -552,7 +551,7 @@ body {
 	font-size:0.85em;
 	display: block;
 	padding:6px 20px;
-	background:#8fa7ae;
+	background:#005596;
 	color: #FFF;
 	text-decoration: none;
 	outline: 0;
@@ -598,8 +597,8 @@ body {
 	font-size:18px;
 }
 .product-articles p a{
-	color:#e44f2b;
-	font-size;14px;
+	color:#005596;
+	font-size:14px;
 }
 .product-articles p a:hover{
 	text-decoration:underline;
@@ -615,7 +614,7 @@ body {
 }
 /*** Footer ***/
 .footer {
-	background:#e44f2b;
+	background:#005596;
 	padding:3% 0;
 }
 .footer-nav{
