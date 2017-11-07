@@ -124,10 +124,10 @@ body {
 .toggleMenu {
     display:  none;
     padding:16px 15px;
-    color: #fff;
+    color: #005596;
     width:95%;
-     border-top:1px solid #DB3C15;
-     border-bottom:1px solid #DB3C15;
+     border-top:1px solid #005596;
+     border-bottom:1px solid #005596;
      background:url("../images/nav-icon.png") no-repeat 98% center;
 }
 .nav {
@@ -201,9 +201,9 @@ body {
 	  background:#005596;
 }
 .nav li li li a {
-    background:#ED6A4A;
+    background:#ffffff;
     z-index:200;
-    border-top:1px solid #EF7A5D;
+    border-top:1px solid #005596;
 }
 
 @media screen and (max-width: 768px) {
@@ -664,7 +664,7 @@ body {
 
 /*  Preview  ============================================================================= */
 .back-links {
-	background:#23272a !important;
+	background:#005596 !important;
 	padding:11px;
 	padding-left:30px;
 	margin-bottom:20px;
@@ -694,7 +694,7 @@ body {
 }
 .back-links  a:hover {
 	text-decoration:underline;
-	color:#e44f2b;
+	color:#ffffff;
 }
 .image {
 	clear: both;
@@ -754,7 +754,7 @@ body {
 }
 .span_3_of_2  h2 {
 	font-size: 1.2em;
-	color:#e44f2b;
+	color:#005596;
 	font-weight: normal;
 	margin-top: 0px;
 }
@@ -773,7 +773,7 @@ body {
 }
 .price p span {
 	font-size:2em;
-	color:#e44f2b;
+	color:#005596;
 	font-family:'Ubuntu Condensed', sans-serif;
 }
 .available {
@@ -951,7 +951,7 @@ body {
 	font-size:0.85em;
 	display: block;
 	padding:8px 10px;
-	background:#e44f2b;
+	background:#005596;
 	color: #FFF;
 	text-decoration: none;
 	outline: 0;

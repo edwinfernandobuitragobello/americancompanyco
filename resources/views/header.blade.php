@@ -10,19 +10,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
-<link href="css/mystyle.css" rel="stylesheet" type="text/css" media="all"/>
-<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script> 
-<script src="js/jquery.openCarousel.js" type="text/javascript"></script>
-<script type="text/javascript" src="js/easing.js"></script>
-<script type="text/javascript" src="js/move-top.js"></script>
+<link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" media="all"/>
+<script type="text/javascript" src="{{ asset('js/jquery-1.9.0.min.js') }}"></script> 
+<script src="{{ asset('js/jquery.openCarousel.js') }}" type="text/javascript"></script>
+<script type="text/javascript" src="{{ asset('js/easing.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/move-top.js') }}"></script>
 </head>
 <body>
 	<div class="header">
   	  		<div class="wrap">
 				<div class="header_top">
 					<div class="logo">
-						<a href="/"><img width="50%" src="images/logo.png" alt="" /></a>
+						<a href="/"><img  src="{{ asset('images/logo.png') }}" alt="" /></a>
 					</div>
 					<div class="header_top_right">
 						  <div class="search_box">
@@ -35,194 +34,60 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</div>
 			     	<div class="clear"></div>
   		    	</div>     
-  		    <div class="navigation">
-  		    	<a class="toggleMenu" href="#">Menu</a>
-					<ul class="nav">
-						<li>
-							<a href="index.html">Inicio</a>
-						</li>
-						<li  class="test">
-							<a href="#">Aplicaciones</a>
-							<ul>
-								<li>
-									<a href="#">Cookware</a>
-									<ul>
-										<li><a href="#">Pots & Pans</a></li>
-										<li><a href="#">Pressure Cookers</a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="#">Storage</a>
-									<ul>
-										<li><a href="#">Bottles & Sippers</a></li>
-										<li><a href="#">Containers & Jars</a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="#">Cutlery & Tableware</a>
-									<ul>
-										<li><a href="#">Cutlery</a></li>
-										<li><a href="#">Condiment Sets</a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="#">Bar Accessories</a>
-									<ul>
-										<li><a href="#">Bottle Openers</a></li>
-										<li><a href="#">Flasks</a></li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<a href="#">Computers</a>
-							<ul>
-								<li>
-									<a href="#">Laptops</a>
-									<ul>
-										<li><a href="#">HP</a></li>
-										<li><a href="#">Lenova</a></li>
-										<li><a href="#">Dell</a></li>
-										<li><a href="#">All Brands</a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="#">Computer Accessories</a>
-									<ul>
-										<li><a href="#">External Hard Disks</a></li>
-										<li><a href="#">Pendrives</a></li>
-										<li><a href="#">PC Components</a></li>
-										<li><a href="#">Computer Peripherals</a></li>
-										<li><a href="#">Datacards & Routers</a></li>
-										<li><a href="#">Mouse</a></li>
-										<li><a href="#">Laptop Skins & Decals</a></li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<a href="#">Health & Beauty</a>
-							<ul>
-								<li><a href="#">Bath & Skin Care</a></li>
-								<li><a href="#">Health & Safety</a></li>
-								<li><a href="#">Maternity Care</a></li>
-								<li><a href="#">Body Care Combos</a></li>
-								
-							</ul>
-						</li>
-						<li>
-							<a href="#">Home & Garden</a>
-							<ul>
-								<li>
-									<a href="#">Home Furnishing</a>
-									<ul>
-										<li><a href="#">Bed</a></li>
-										<li><a href="#">Bath</a></li>
-										<li><a href="#">Kitchen</a></li>
-										<li><a href="#">Living</a></li>
-										
-									</ul>
-								</li>
-								<li>
-									<a href="#">Home Decor</a>
-									<ul>
-										<li><a href="#">Flowers & Plants</a></li>
-										<li><a href="#">Home Fragrances</a></li>
-										<li><a href="#">Spiritual Decor</a></li>
-										<li><a href="#">Wall Decor</a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="#">Gardening Tools</a>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<a href="#">Office Supplies</a>
-							<ul>
-								<li>
-									<a href="#">Books</a>
-									<ul>
-										<li><a href="#">Academic & Professional</a></li>
-										<li><a href="#">Entrance Exam</a></li>
-										<li><a href="#">Literature & Fiction</a></li>
-										<li><a href="#">Children & Teens</a></li>
-										<li><a href="#">Indian Writing</a></li>
-										<li><a href="#">New Releases</a></li>
-										<li><a href="#">Bestsellers</a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="#">Stationery</a>
-									<ul>
-										<li><a href="#">Pens</a></li>
-										<li><a href="#">Calculators</a></li>
-										<li><a href="#">College Supplies</a></li>
-										<li><a href="#">Art Supplies</a></li>
-										<li><a href="#">Diaries & Notebooks</a></li>
-										<li><a href="#">Gifting</a></li>
-									</ul>
-								</li>
-								
-							</ul>
-						</li>
-						<li>
-							<a href="#">Sports Equipment</a>
-							<ul>
-								<li>
-									<a href="#">Fitness</a>
-									<ul>
-										<li><a href="#">Yoga Mats</a></li>
-										<li><a href="#">Gym Gloves</a></li>
-										<li><a href="#">Ab Exercisers</a></li>
-										<li><a href="#">Gym Balls</a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="#">Indoor Sports</a>
-									<ul>
-										<li><a href="#">Chess</a></li>
-										<li><a href="#">Darts</a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="#">Team Sports</a>
-									<ul>
-										<li><a href="#">Basketball</a></li>
-										<li><a href="#">Cricket</a></li>
-										<li><a href="#">Football</a></li>
-										<li><a href="#">VolleyBall</a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="#">Racquet Sports</a>
-									<ul>
-										<li><a href="#">Badminton</a></li>
-										<li><a href="#">Squash</a></li>
-										<li><a href="#">Table Tennis</a></li>
-										<li><a href="#">Tennis</a></li>
-									</ul>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<a href="contact.html">Contact Us</a>
-						</li>
-					</ul>
-					 <span class="left-ribbon"> </span> 
-      				 <span class="right-ribbon"> </span>    
-  		    </div>
-  		     <div class="header_bottom">
-			   <div class="slider-text">
-			   	<h2>Lorem Ipsum Placerat <br/>Elementum Quistue Tunulla Maris</h2>
-			   	<p>Vivamus vitae augue at quam frigilla tristique sit amet<br/> acin ante sikumpre tisdin.</p>
-			   	<a href="#">Sitamet Tortorions</a>
-	  	      </div>
-	  	      <div class="slider-img">
-	  	      	<img src="images/slider-img.png" alt="" />
-	  	      </div>
-	  	     <div class="clear"></div>
-	      </div>
+	  		    <div class="navigation">
+	  		    	<a class="toggleMenu" href="#">Menú</a>
+						<ul class="nav">
+							<li>
+								<a href="{{url('/')}}">Inicio</a>
+							</li>
+							<li  class="test">
+								<a href="#">Categorías</a>
+								<ul>
+									@foreach($categorias as $categoria)
+										<li>
+											<a >{{ $categoria->nombre }}</a>
+											<ul>
+												@foreach($categoria->sub_categorias as $sub_categoria)
+													<li><a href="{{url('sub-categoria')}}/{{$sub_categoria->id_sub}}">{{$sub_categoria->nombre_sub}}</a></li>
+												@endforeach
+											</ul>
+										</li>
+									@endforeach
+								</ul>
+							</li>
+							<li>
+								<a href="{{url('/sobre_nosotros')}}">Sobre nosotros</a>
+							</li>
+							<li>
+								<a href="{{url('/preguntas_frecuentes')}}">Preguntas frecuentes</a>
+							</li>
+							<li>
+								<a href="{{url('/descargar_catalogo')}}">Descargar catálogo</a>
+							</li>
+							<li>
+								<a href="{{url('/carrito_compras')}}">Carrito de compras</a>
+							</li>
+							<li>
+								<a href="{{url('/articulos')}}">Artículos</a>
+							</li>
+							<li>
+								<a href="{{url('/contacto')}}">Contactenos</a>
+							</li>
+						</ul>
+						<span class="left-ribbon"> </span> 
+	      				<span class="right-ribbon"> </span>    
+	  		    </div>
+  		     	<div class="header_bottom">
+			   		<div class="slider-text">
+				   		<h2>Lorem Ipsum Placerat <br/>Elementum Quistue Tunulla Maris</h2>
+				   		<p>Vivamus vitae augue at quam frigilla tristique sit amet<br/> acin ante sikumpre tisdin.</p>
+				   		<a href="#">Sitamet Tortorions</a>
+	  	      		</div>
+		  	    <div class="slider-img">
+		  	      	<img src="{{ asset('images/slider-img.png') }}" alt="" />
+		  	    </div>
+	  	     	<div class="clear"></div>
+	        </div>
    		</div>
    </div>
    <!------------End Header ------------>

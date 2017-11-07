@@ -10,7 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/{id?}','IndexController@index');
+Route::get('/','IndexController@index');
+Route::get('/sub-categoria/{id?}','IndexController@index');
+Route::get('/producto/{id?}','IndexController@producto');
 
 Route::get('/admin/categorias','AdministradorController@categorias');
 Route::post('/admin/crear_categoria','AdministradorController@crear_categoria');

@@ -20,6 +20,6 @@
 		});
 	</script>
     <a href="#" id="toTop"> </a>
-    <script type="text/javascript" src="js/navigation.js"></script>
+    <script type="text/javascript" src="{{ asset('js/navigation.js') }}"></script>
 </body>
 </html>
