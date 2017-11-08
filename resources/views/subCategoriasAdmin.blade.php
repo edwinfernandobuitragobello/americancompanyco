@@ -231,7 +231,7 @@
             }
         });
 	});
-	var url = "http://localhost/americancompanyco/public";
+	var url = "http://americancompany.com.co/public/";
 	function submit_activar(id){
     	window.location.href = url+"/admin/activar_subCategorias/"+id;
     }

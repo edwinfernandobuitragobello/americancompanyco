@@ -161,6 +161,7 @@ class AdministradorController extends Controller
         $producto->id_categoria_fk = $request->id_categoria_fk;
         $producto->id_subcategoria_fk = $request->id_subcategoria_fk;
         $producto->activo_prod = 0;
+        $producto->vistas = 0;
         $producto->save();
         return redirect()->back()->with('success', 'Producto creado con exito');
     }
@@ -186,7 +187,8 @@ class AdministradorController extends Controller
     {
         $subCategorias = SubCategoria::where('id_categoria_fk',$id)->get();
         return $subCategorias;
-    }public function activar_producto($id)
+    }
+    public function activar_producto($id)
     {
         $producto = Productos::find($id);
         $producto->activo_prod = 1;
@@ -207,4 +209,5 @@ class AdministradorController extends Controller
         $producto->delete();
         return redirect()->back()->with('success', 'Producto eliminado con exito');
     }
+    
 }

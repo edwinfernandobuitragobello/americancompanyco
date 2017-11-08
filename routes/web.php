@@ -13,6 +13,8 @@
 Route::get('/','IndexController@index');
 Route::get('/sub-categoria/{id?}','IndexController@index');
 Route::get('/producto/{id?}','IndexController@producto');
+Route::get('/contacto','IndexController@contacto');
+Route::post('/contacto/enviar','IndexController@contacto_enviar');
 
 Route::get('/admin/categorias','AdministradorController@categorias');
 Route::post('/admin/crear_categoria','AdministradorController@crear_categoria');
@@ -36,6 +38,3 @@ Route::get('/admin/desactivar_producto/{id?}','AdministradorController@desactiva
 Route::get('/admin/eliminar_producto/{id?}','AdministradorController@eliminar_producto');
 Route::get('/admin/obtenerSubCategorias/{id?}','AdministradorController@obtenerSubCategorias');
 
-Route::get('/pruebaformulario', function(){
-	return view('form_category');
-});

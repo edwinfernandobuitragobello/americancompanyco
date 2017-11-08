@@ -17,11 +17,12 @@ class CreateProductosTable extends Migration
             $table->increments('id_prod');
             $table->string('foto');
             $table->string('nombre_prod');
-            $table->longText('descripcion_prod');
+            $table->longText('descripcion_prod')->nullable();
             $table->string('precio');
             $table->integer('id_subcategoria_fk')->unsigned();
             $table->integer('id_categoria_fk')->unsigned();
             $table->integer('activo_prod');
+            $table->integer('vistas');
             $table->timestamps();
         });
         Schema::table('productos', function($table) {

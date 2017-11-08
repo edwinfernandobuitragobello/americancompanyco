@@ -198,7 +198,7 @@ body {
     font-size:15px;
 }
 .nav li li a:hover {
-	  background:#005596;
+	font-weight: bold;
 }
 .nav li li li a {
     background:#ffffff;
@@ -1254,7 +1254,7 @@ body {
 	font-size:16px;
 	padding:10px 25px;
 	font-family: 'Ubuntu Condensed', sans-serif;
-	background:#e44f2b;
+	background:#005596;
 	color: #FFF;
 	border:none;
 	text-decoration: none;

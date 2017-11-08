@@ -56,10 +56,10 @@
 						
 						<li class="light-blue dropdown-modal">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="{{ asset('assets/images/avatars/user.jpg')}}" alt="Jason's Photo" />
+								
 								<span class="user-info">
 									<small>Bienvenida,</small>
-									Nubia
+									Yasmin
 								</span>
 
 								<i class="ace-icon fa fa-caret-down"></i>
