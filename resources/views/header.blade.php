@@ -36,46 +36,46 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   		    	</div>     
 	  		    <div class="navigation">
 	  		    	<a class="toggleMenu" href="#">Menú</a>
-						<ul class="nav">
-							<li>
-								<a href="{{url('/')}}">Inicio</a>
-							</li>
-							<li  class="test">
-								<a href="#">Categorías</a>
-								<ul>
-									@foreach($categorias as $categoria)
-										<li>
-											<a >{{ $categoria->nombre }}</a>
-											<ul>
-												@foreach($categoria->sub_categorias as $sub_categoria)
-													<li><a href="{{url('sub-categoria')}}/{{$sub_categoria->id_sub}}">{{$sub_categoria->nombre_sub}}</a></li>
-												@endforeach
-											</ul>
-										</li>
-									@endforeach
-								</ul>
-							</li>
-							<li>
-								<a href="{{url('/sobre_nosotros')}}">Sobre nosotros</a>
-							</li>
-							<li>
-								<a href="{{url('/preguntas_frecuentes')}}">Preguntas frecuentes</a>
-							</li>
-							<li>
-								<a href="{{url('/descargar_catalogo')}}">Descargar catálogo</a>
-							</li>
-							<li>
-								<a href="{{url('/carrito_compras')}}">Carrito de compras</a>
-							</li>
-							<li>
-								<a href="{{url('/articulos')}}">Artículos</a>
-							</li>
-							<li>
-								<a href="{{url('/contacto')}}">Contactenos</a>
-							</li>
-						</ul>
-						<span class="left-ribbon"> </span> 
-	      				<span class="right-ribbon"> </span>    
+					<ul class="nav">
+						<li>
+							<a href="{{url('/')}}">Inicio</a>
+						</li>
+						<li  class="test">
+							<a href="#">Categorías</a>
+							<ul>
+								@foreach($categorias as $categoria)
+									<li>
+										<a >{{ $categoria->nombre }}</a>
+										<ul>
+											@foreach($categoria->sub_categorias as $sub_categoria)
+												<li><a href="{{url('sub-categoria')}}/{{$sub_categoria->id_sub}}">{{$sub_categoria->nombre_sub}}</a></li>
+											@endforeach
+										</ul>
+									</li>
+								@endforeach
+							</ul>
+						</li>
+						<li>
+							<a href="{{url('/sobre_nosotros')}}">Sobre nosotros</a>
+						</li>
+						<li>
+							<a href="{{url('/preguntas_frecuentes')}}">Preguntas frecuentes</a>
+						</li>
+						<li>
+							<a href="{{url('/descargar_catalogo')}}">Descargar catálogo</a>
+						</li>
+						<li>
+							<a href="{{url('/carrito_compras')}}">Carrito de compras</a>
+						</li>
+						<li>
+							<a href="{{url('/articulos')}}">Artículos</a>
+						</li>
+						<li>
+							<a href="{{url('/contacto')}}">Contactenos</a>
+						</li>
+					</ul>
+					<span class="left-ribbon"> </span> 
+      				<span class="right-ribbon"> </span>    
 	  		    </div>
   		     	<div class="header_bottom">
 			   		<div class="slider-text">

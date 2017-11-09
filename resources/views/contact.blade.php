@@ -90,13 +90,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				  <div class="contact-form">
 				  	<h3>Contáctenos</h3>
 					    <form action="{{ url('/contacto/enviar') }}" method="POST" role="form">
-					    	<div>
 						    	<input name="userName" type="text" class="textbox textbox1" value="Nombre..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nombre...';}" >
+						    	<input name="userphone" type="text" class="textbox" value="Teléfono..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Teléfono...';}">
 						    	<input name="userEmail" type="text" class="textbox" value="Correo..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Correo...';}">
 						    	<input name="usersubject" type="text" class="textbox" value="Asunto..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Asunto...';}">
 						    	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 						    	<div class="clear"></div>
-						    </div>
 						    <div>
 						    	<span><textarea name="userMsg" value="Message:" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message';}">Mensaje </textarea></span>
 						    </div>
