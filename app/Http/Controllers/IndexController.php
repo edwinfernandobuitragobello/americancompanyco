@@ -60,4 +60,10 @@ class IndexController extends Controller
             $msj->to('ventas@americancompany.com.co');
         });
     }
+    public function preguntas_frecuentes(){
+        $categorias = Categorias::with(['sub_categorias' => function ($query) {
+            $query->where('activo_sub', '=', '1');
+        }])->where('activo',1)->get();
+        return view('preguntas_frecuentes', compact('categorias'));
+    }
 }

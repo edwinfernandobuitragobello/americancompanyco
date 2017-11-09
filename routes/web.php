@@ -15,6 +15,7 @@ Route::get('/sub-categoria/{id?}','IndexController@index');
 Route::get('/producto/{id?}','IndexController@producto');
 Route::get('/contacto','IndexController@contacto');
 Route::post('/contacto/enviar','IndexController@contacto_enviar');
+Route::get('/preguntas_frecuentes','IndexController@preguntas_frecuentes');
 
 Route::get('/admin/categorias','AdministradorController@categorias');
 Route::post('/admin/crear_categoria','AdministradorController@crear_categoria');
