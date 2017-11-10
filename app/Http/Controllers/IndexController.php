@@ -61,4 +61,10 @@ class IndexController extends Controller
         });
         return redirect()->back()->with('success', 'Email enviado con exito');
     }
+    public function preguntas_frecuentes(){
+        $categorias = Categorias::with(['sub_categorias' => function ($query) {
+            $query->where('activo_sub', '=', '1');
+        }])->where('activo',1)->get();
+        return view('contact', compact('categorias'));
+    }
 }
