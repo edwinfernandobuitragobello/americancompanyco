@@ -82,11 +82,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
  <div class="main">
  	<div class="wrap">
      <div class="preview-page">
-     				<!-- <div class="contact_info">
-					    	  <div class="map">
-							   	    <iframe width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.co.in/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Lighthouse+Point,+FL,+United+States&amp;aq=4&amp;oq=light&amp;sll=26.275636,-80.087265&amp;sspn=0.04941,0.104628&amp;ie=UTF8&amp;hq=&amp;hnear=Lighthouse+Point,+Broward,+Florida,+United+States&amp;t=m&amp;z=14&amp;ll=26.275636,-80.087265&amp;output=embed"></iframe><br><small><a href="https://maps.google.co.in/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Lighthouse+Point,+FL,+United+States&amp;aq=4&amp;oq=light&amp;sll=26.275636,-80.087265&amp;sspn=0.04941,0.104628&amp;ie=UTF8&amp;hq=&amp;hnear=Lighthouse+Point,+Broward,+Florida,+United+States&amp;t=m&amp;z=14&amp;ll=26.275636,-80.087265" style="color:#888;text-align:left;font-size:0.85em">View Larger Map</a></small>
-							  </div>
-      				</div> -->
 				  <div class="contact-form">
 				  	<h3>Contáctenos</h3>
 					    <form action="{{ url('/contacto/enviar') }}" method="POST" role="form">
@@ -105,6 +100,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						  </div>
 					    </form>
 				  </div>
+				  <div class="contact_info">
+			    	  <div class="map">
+					   	    <iframe width="100%" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8154416.20766379!2d-76.6205071530077!3d3.667249216646498!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e15a43aae1594a3%3A0x9a0d9a04eff2a340!2sColombia!5e0!3m2!1ses-419!2sco!4v1510285793628" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+					  </div>
+      				</div>
 			  </div>		
          </div> 
     </div>

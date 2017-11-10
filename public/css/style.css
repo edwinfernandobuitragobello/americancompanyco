@@ -1595,4 +1595,14 @@ body {
     border-color: #ddd;
     cursor: not-allowed;
 }
+.title_sobre{
+	font-size: 50px;
+	color: #005596;
+}
+.descripcion_sobre{
+	font-size: 30px;
+}
+div#imagen_sobre {
+    float: left;
+}
 

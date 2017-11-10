@@ -67,4 +67,12 @@ class IndexController extends Controller
         }])->where('activo',1)->get();
         return view('contact', compact('categorias'));
     }
+    public function sobre_nosotros(){
+        $categorias = Categorias::with(['sub_categorias' => function ($query) {
+            $query->where('activo_sub', '=', '1');
+        }])->where('activo',1)->get();
+        //productos para las categorias
+        $productos = Productos::orderBy('updated_at', 'desc')->where('activo_prod',1)->limit(12)->get();
+        return view('sobre_nosotros', compact('categorias','productos'));
+    }
 }
