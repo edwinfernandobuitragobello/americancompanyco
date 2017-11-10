@@ -166,8 +166,13 @@ body {
 .nav > li {
     float: left;
 }
-.nav > li:first-child,.nav > li:last-child {
-	background-image:none;
+.nav > li:first-child{
+	background-image: none;
+}
+.nav > li:last-child {
+	background-image: url(../images/line-divider.png);
+    background-repeat: no-repeat;
+    background-position: left;
 }
 .nav > li {
     background-image: url("../images/line-divider.png");
@@ -1284,7 +1289,41 @@ body {
 	}
 }
 @media only screen and (max-width: 1280px) {
-   
+   .wrap {
+		width: 95%;
+	}
+	.navigation{
+		margin:0 30px;
+	}
+	.nav li li a{
+		font-size:14px;
+	}
+	.nav ul{
+		width:9em;
+	}
+	.nav > li > a{
+		font-size:14px;
+	}
+	.slider-img img{
+		margin-top:-50px;
+	}
+	.slider-img{
+		width:50%;
+	}
+	.span_1_of_2{
+		width:100%;
+	}
+	.span_3_of_1{
+		width:100%;
+		padding:0;
+		border-left:none;
+	}
+	.rightsidebar{
+		margin:0;
+	}
+	.contact-form input[type="text"].textbox{
+		width:23.3%;
+	}
 }
 @media only screen and (max-width: 1024px) {
 .wrap {

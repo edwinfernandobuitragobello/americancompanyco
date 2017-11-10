@@ -98,14 +98,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<a href="{{url('/carrito_compras')}}">Carrito de compras</a>
 						</li>
 						<li>
-							<a href="{{url('/articulos')}}">Artículos</a>
-						</li>
-						<li>
 							<a href="{{url('/contacto')}}">Contáctenos</a>
 						</li>
-					</ul>
-					<span class="left-ribbon"> </span> 
-      				<span class="right-ribbon"> </span>    
+					</ul>  
 	  		    </div>
    		    </div>
           </div>

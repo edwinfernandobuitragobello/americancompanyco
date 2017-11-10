@@ -36,7 +36,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   		    	</div>     
 	  		    <div class="navigation">
 	  		    	<a class="toggleMenu" href="#">Menú</a>
-					<ul class="nav">
+					<ul class="nav" style="text-align: center;">
 						<li>
 							<a href="{{url('/')}}">Inicio</a>
 						</li>
@@ -68,14 +68,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<a href="{{url('/carrito_compras')}}">Carrito de compras</a>
 						</li>
 						<li>
-							<a href="{{url('/articulos')}}">Artículos</a>
-						</li>
-						<li>
 							<a href="{{url('/contacto')}}">Contactenos</a>
 						</li>
-					</ul>
-					<span class="left-ribbon"> </span> 
-      				<span class="right-ribbon"> </span>    
+					</ul> 
 	  		    </div>
   		     	<div class="header_bottom">
 			   		<div class="slider-text">
