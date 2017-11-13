@@ -17,6 +17,7 @@ Route::get('/contacto','IndexController@contacto');
 Route::post('/contacto/enviar','IndexController@contacto_enviar');
 Route::get('/preguntas_frecuentes','IndexController@preguntas_frecuentes');
 Route::get('/sobre_nosotros','IndexController@sobre_nosotros');
+Route::get('/productos','IndexController@productos_busqueda');
 
 Route::get('/admin/categorias','AdministradorController@categorias');
 Route::post('/admin/crear_categoria','AdministradorController@crear_categoria');

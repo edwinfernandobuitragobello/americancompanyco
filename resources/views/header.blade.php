@@ -26,8 +26,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="header_top_right">
 						  <div class="search_box">
 						  	<span>Buscar</span>
-				     		<form>
-				     			<input type="text" value=""><input type="submit" value="">
+				     		<form action="{{ url('/productos') }}" method="GET" role="form">
+				     			<input name="p" type="text" value=""><input type="submit" value="">
 				     		</form>
 				     		<div class="clear"></div>
 				     	</div>

@@ -75,4 +75,16 @@ class IndexController extends Controller
         $productos = Productos::orderBy('updated_at', 'desc')->where('activo_prod',1)->limit(12)->get();
         return view('sobre_nosotros', compact('categorias','productos'));
     }
+    public function productos_busqueda(Request $request){
+        $palabra = $request->p;
+        //$categorias = Categorias::All()->where('activo',1);
+        $categorias = Categorias::with(['sub_categorias' => function ($query) {
+            $query->where('activo_sub', '=', '1');
+        }])->where('activo',1)->get();
+        //productos para las categorias
+        $productos = Productos::orderBy('updated_at', 'desc')->where('activo_prod',1)->limit(12)->get();
+        //productos para la galeria de productos
+        $productos_all = Productos::orderBy('updated_at', 'desc')->where('activo_prod',1)->where('nombre_prod','like',"%".$palabra."%")->paginate(12);
+        return view('productos_busqueda', compact('categorias','productos','productos_all', 'palabra'));
+    }
 }
