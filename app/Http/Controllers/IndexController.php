@@ -36,7 +36,7 @@ class IndexController extends Controller
         //productos para la galeria de productos
         $productos_all = Productos::orderBy('updated_at', 'desc')->where('activo_prod',1)->where('id_subcategoria_fk',$id)->paginate(12);
         //nombre de la categoria
-        $producto = DB::table('productos')
+        $producto = DB::table('productos')->where('id_prod',$id)
             ->join('sub_categorias', 'sub_categorias.id_sub', '=', 'productos.id_subcategoria_fk')
             ->join('categorias', 'productos.id_subcategoria_fk', '=', 'categorias.id')
             ->select('productos.*', 'sub_categorias.nombre_sub', 'categorias.nombre')
@@ -86,5 +86,45 @@ class IndexController extends Controller
         //productos para la galeria de productos
         $productos_all = Productos::orderBy('updated_at', 'desc')->where('activo_prod',1)->where('nombre_prod','like',"%".$palabra."%")->paginate(12);
         return view('productos_busqueda', compact('categorias','productos','productos_all', 'palabra'));
+    }
+    public function agregar_producto(){
+        session_start();
+        // session_destroy(); return;
+        $array['id'] =$_POST['id'];
+        $array['cant'] =$_POST['cant'];
+        $array['nombre'] =$_POST['nombre'];
+        $array['precio'] =$_POST['precio'];
+        $array['foto'] =$_POST['foto'];
+        $aux = 0;
+        $fila = 0;
+        if (isset($_SESSION['carrito'])) {
+            for ($i=0; $i < count($_SESSION['carrito']); $i++) { 
+                if ($_SESSION['carrito'][$i]['id']!=$_POST['id']) {
+                    $aux++;
+                }else{
+                    $fila = $i;
+                }
+            }
+            if (count($_SESSION['carrito'])==$aux) {
+                $_SESSION['carrito'][] = $array;
+                echo "Su pedido se agregó correctamente";
+            }else{
+                $cantidad_antigua = $_SESSION['carrito'][$fila]['cant'];
+                $_SESSION['carrito'][$fila]['cant'] = $_POST['cant']+$_SESSION['carrito'][$fila]['cant'];
+                echo "Su pedido se actualizó de ".$cantidad_antigua." unidades a ".$_SESSION['carrito'][$fila]['cant']." unidades";
+            }
+        }else{
+            $_SESSION['carrito'][] = $array;
+            echo "Su pedido se agregó correctamente";
+        }
+    }
+    public function carrito_compras($id=null)
+    {
+        $categorias = Categorias::with(['sub_categorias' => function ($query) {
+            $query->where('activo_sub', '=', '1');
+        }])->where('activo',1)->get();
+        //productos para las categorias
+        $productos = Productos::orderBy('updated_at', 'desc')->where('activo_prod',1)->limit(12)->get();
+        return view('carrito_compras', compact('categorias','productos'));
     }
 }

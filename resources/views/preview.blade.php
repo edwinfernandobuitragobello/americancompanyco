@@ -145,9 +145,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								</div>
 								<div class="share-desc">
 									<div class="share">
-										<p>Número de unidades :</p><input type="number" class="text_box" type="text" value="1" min="1" />				
+										<p>Número de unidades :</p><input id="cant" type="number" class="text_box" type="text" value="1" min="1" />				
 									</div>
-									<div class="button"><span><a href="#">Agregar al carrito</a></span></div>					
+									<div class="button"><span><a id="submit_car" onclick="agregar_producto({{$producto->id_prod}},'{{$producto->nombre_prod}}','{{$producto->precio}}','{{$producto->foto}}')">Agregar al carrito</a></span></div>					
 									<div class="clear"></div>
 								</div>
 							</div>
@@ -160,7 +160,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							@foreach($productos as $producto1)
 								<li>
 									<h4><a href="preview.html"><?php echo str_limit( $producto1->nombre_prod ,15); ?></a></h4>
-								    <a href="{{url('/producto')}}/{{$producto->id_prod}}"><img src="{{ asset('uploads') }}/{{($producto1->foto)}}" alt="" /></a>
+								    <a href="{{url('/producto')}}/{{$producto1->id_prod}}"><img src="{{ asset('uploads') }}/{{($producto1->foto)}}" alt="" /></a>
 								    <div class="price-details">
 								        <div class="price-number">
 											<p><span class="rupees line-through">$ {{($producto1->precio*1.1)}}</span> &nbsp; <span class="rupees">$ {{$producto1->precio}}</span></p>
@@ -218,6 +218,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				$().UItoTop({ easingType: 'easeOutQuart' });
 				
 			});
+			function agregar_producto(id,nombre,precio,foto){
+		        var cant = $('#cant').val();
+		        var host = "http://americancompany.com.co/public/";
+		        $.ajax({
+		            type: "POST",
+		            url: host + '/agregar_producto',
+		            data: {"_token": "{{ csrf_token() }}",id: id,cant: cant, nombre: nombre, precio: precio, foto: foto},
+		            success: function( msg ) {
+		            	var cant = $('#cant').val('1');
+		                alert(msg);
+		            }
+		        });
+		    };
 		</script>
     	<a href="#" id="toTop"> </a>
         <script type="text/javascript" src="{{ asset('js/navigation.js') }}"></script>
