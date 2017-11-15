@@ -6,16 +6,46 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE HTML>
 <head>
-<title>American company</title>
+<title>American Company</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
 <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" media="all"/>
-<link href="{{ asset('css/mystyle.css') }}" rel="stylesheet" type="text/css" media="all"/>
-<script type="text/javascript" src="{{ asset('js/jquery-1.9.0.min.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/move-top.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/easing.js') }}"></script>
 <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}"/>
+<script type="text/javascript" src="{{ asset('js/jquery-1.9.0.min.js') }}"></script> 
+<script src="{{ asset('js/jquery.openCarousel.js') }}" type="text/javascript"></script>
+<script type="text/javascript" src="{{ asset('js/easing.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/move-top.js') }}"></script>
+<script src="{{ asset('js/easyResponsiveTabs.js') }}" type="text/javascript"></script>
+<link href="{{ asset('css/easy-responsive-tabs.css') }}" rel="stylesheet" type="text/css" media="all"/>
+ <script type="text/javascript">
+    $(document).ready(function () {
+        $('#horizontalTab').easyResponsiveTabs({
+            type: 'default', //Types: default, vertical, accordion           
+            width: 'auto', //auto or any width like 600px
+            fit: true   // 100% fit in a container
+        });
+    });
+   </script>		
+<link rel="stylesheet" href="{{ asset('css/etalage.css') }}">
+<script src="{{ asset('js/jquery.etalage.min.js') }}"></script>
+<script>
+			jQuery(document).ready(function($){
+
+				$('#etalage').etalage({
+					thumb_image_width: 300,
+					thumb_image_height: 400,
+					source_image_width: 900,
+					source_image_height: 1200,
+					show_hint: true,
+					click_callback: function(image_anchor, instance_id){
+						alert('Callback example:\nYou clicked on an image with the anchor: "'+image_anchor+'"\n(in Etalage instance: "'+instance_id+'")');
+					}
+				});
+
+			});
+		</script>
+	  <script src="{{ asset('js/star-rating.js') }}" type="text/javascript"></script>
 </head>
 <body>
 	<div class="header">
@@ -78,59 +108,68 @@ License URL: http://creativecommons.org/licenses/by/3.0/
  	<div class="main">
 	 	<div class="wrap">
 	     	<div class="preview-page">
+	     		<button style="float: right;" id="submit_activar" class="btn btn-xs btn-danger" onclick="vaciar_carrito()">
+					<i class="ace-icon fa fa-check bigger-120">  VACIAR CARRITO</i>
+				</button><br>
 			    <h3>Carrito de compras</h3>
-			    <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
-			    	<thead>
-						<tr>
-							<th width="8%"></th>
-							<th>Nombre</th>
-							<th>Precio</th>
-							<th>Cantidad</th>
-							<th></th>
-							<th></th>
-						</tr>
-					</thead>
-			    	<tbody>
-			    		<?php 
-			    			session_start();
-			    			if (isset($_SESSION['carrito'])) {
-			    			 	$producto = $_SESSION['carrito'];
-			    			}else{
-			    				$producto = array();
-			    			} 
-			    		?>
-						<?php for ($i=0; $i < count($producto) ; $i++) { 
-							echo '<tr>
-								<td style="vertical-align: middle;"><img class="img_ov" src="'.url('/uploads').'/'.$producto[$i]['foto'].'" width="100%" ></td>
-								<td style="vertical-align: middle;">'.$producto[$i]['nombre'].'</td>
-								<td style="vertical-align: middle;">'.$producto[$i]['precio'].'</td>
-								<td style="vertical-align: middle;">'.$producto[$i]['cant'].'</td>
-								<td style="text-align: center; vertical-align: middle;">
-										@if($producto->activo_prod==0)
-											<button id="submit_activar" class="btn btn-xs btn-success" onclick="submit_activar({{$producto->id_prod}})">
-											<i class="ace-icon fa fa-check bigger-120">  ACTIVAR</i>
-										@else
-											<button id="submit_desactivar" class="btn btn-xs btn-warning" onclick="submit_desactivar({{$producto->id_prod}})">
-											<i class="ace-icon fa fa-close bigger-120">  DESACTIVAR</i>
-										@endif
-									</button>
-								</td>
-								<td style="text-align: center; vertical-align: middle;">
-									<button class="btn btn-xs btn-info" data-toggle="modal" data-target="#myModal" onclick="modalOpen({{$producto->id_prod}} , {{$producto->nombre_prod}} , {{$producto->id_categoria_fk}} , {{$producto->id_subcategoria_fk}} , {{$producto->precio}}, {{$producto->descripcion_prod}})">
-										<i class="ace-icon fa fa-pencil bigger-120">  EDITAR</i>
-									</button>
-								</td>
-								<td style="text-align: center; vertical-align: middle;">
-									<button class="btn btn-xs btn-danger" onclick="submit_eliminar({{$producto->id_prod}})">
-										<i class="ace-icon fa fa-trash-o bigger-120">  ELIMINAR</i>
-									</button>
-								</td>
-							</tr>';
-			   				 } ?>
-					</tbody>
-				</table>		    
+			    <?php session_start(); if (isset($_SESSION['carrito'])) { $producto = $_SESSION['carrito']; ?>
+    			 	<table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+				    	<thead>
+							<tr>
+								<th width="8%"></th>
+								<th>Nombre</th>
+								<th>Precio unitario</th>
+								<th>Cantidad</th>
+								<th>Total</th>
+								<th></th>
+							</tr>
+						</thead>
+				    	<tbody
+							<?php $total = 0; for ($i=0; $i < count($producto) ; $i++) { 
+								$total = $total + ($producto[$i]['cant']*$producto[$i]['precio']);
+								echo '<tr>
+									<td style="vertical-align: middle;"><img class="img_ov" src="'.url('/uploads').'/'.$producto[$i]['foto'].'" width="100%" ></td>
+									<td style="vertical-align: middle;">'.$producto[$i]['nombre'].'</td>
+									<td style="vertical-align: middle;">'.$producto[$i]['precio'].'</td>
+									<td style="vertical-align: middle;">'.$producto[$i]['cant'].'</td>
+									<td style="vertical-align: middle;">'.$producto[$i]['cant']*$producto[$i]['precio'].'</td>
+									<td style="text-align: center; vertical-align: middle;">
+										<button id="submit_activar" class="btn btn-xs btn-warning" onclick="eliminar_carrito('.$producto[$i]['id'].')">
+											<i class="ace-icon fa fa-check bigger-120">  ELIMINAR</i>
+										</button>
+									</td>
+								</tr>';
+				   				 } ?>
+						</tbody>
+					</table>
+					<p style="font-size: 30px; float:right;">Valor total a pagar : <?php echo $total ?> </p><br><br>
+	    		<?php }else{ ?>
+	    				<p style="font-size: 30px;">No tienes productos en el carrito</p>
+	    		<?php } ?>
+			    		    
 			</div>		
-	    </div> 
+	    </div>
+	    <div class="content_top">
+        	<div class="wrap">
+          	   <h3>Últimos Productos</h3>
+          	</div>
+          	<div class="line"> </div>
+          	<div class="wrap">
+          	 <div class="ocarousel_slider">  
+  				<div class="ocarousel example_photos" data-ocarousel-perscroll="3">
+	                <div class="ocarousel_window">
+	                	@foreach($productos as $producto)
+	                   		<a href="{{url('/producto')}}/{{$producto->id_prod}}" title="{{$producto->nombre_prod}}"> <img src="{{ asset('uploads') }}/{{$producto->foto}}" width="100px" height="100px" alt="" /><p><?php echo str_limit( $producto->nombre_prod ,15); ?></p></a>
+                   		@endforeach
+	                </div>
+	               <span>           
+	                <a href="#" data-ocarousel-link="left" style="float: left;" class="prev"> </a>
+	                <a href="#" data-ocarousel-link="right" style="float: right;" class="next"> </a>
+	               </span>
+			   </div>
+		     </div>  
+		   </div>    		
+       </div> 
     </div>
  </div>
    <div class="footer">
@@ -151,6 +190,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				$().UItoTop({ easingType: 'easeOutQuart' });
 				
 			});
+			function vaciar_carrito(){
+		        var host = "http://americancompany.com.co/public/";
+		        $.ajax({
+		            type: "POST",
+		            url: host + '/vaciar_carrito',
+		            data: {"_token": "{{ csrf_token() }}"},
+		            success: function( msg ) {
+		                location.reload();
+		            }
+		        });
+		    };
+		    function eliminar_carrito(id){
+		        var host = "http://americancompany.com.co/public/";
+		        $.ajax({
+		            type: "POST",
+		            url: host + '/eliminar_producto',
+		            data: {"_token": "{{ csrf_token() }}",id: id},
+		            success: function( msg ) {
+		                location.reload();
+		            }
+		        });
+		    };
 		</script>
     	<a href="#" id="toTop"> </a>
         <script type="text/javascript" src="{{ asset('js/navigation.js') }}"></script>

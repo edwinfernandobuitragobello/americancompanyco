@@ -127,4 +127,24 @@ class IndexController extends Controller
         $productos = Productos::orderBy('updated_at', 'desc')->where('activo_prod',1)->limit(12)->get();
         return view('carrito_compras', compact('categorias','productos'));
     }
+    public function eliminar_producto()
+    {
+        session_start();
+        // session_destroy(); return;
+        $session = $_SESSION['carrito'];
+        session_destroy();
+        session_start();
+        for ($i=0; $i < count($session) ; $i++) { 
+            if ($session[$i]['id']!=$_POST['id']) {
+                $_SESSION['carrito'][] = $session[$i];
+                //echo "Su pedido se agregó correctamente";
+            }
+        }
+        redirect()->back();
+    }
+    public function vaciar_carrito()
+    {
+        session_start();
+        session_destroy();
+    }
 }

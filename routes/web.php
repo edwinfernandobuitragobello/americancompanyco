@@ -19,6 +19,8 @@ Route::get('/preguntas_frecuentes','IndexController@preguntas_frecuentes');
 Route::get('/sobre_nosotros','IndexController@sobre_nosotros');
 Route::get('/productos','IndexController@productos_busqueda');
 Route::post('/agregar_producto','IndexController@agregar_producto');
+Route::post('/eliminar_producto','IndexController@eliminar_producto');
+Route::post('/vaciar_carrito','IndexController@vaciar_carrito');
 Route::get('/carrito_compras','IndexController@carrito_compras');
 
 Route::get('/admin/categorias','AdministradorController@categorias');

@@ -34,9 +34,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</div>
 			     	<div class="clear"></div>
   		    	</div>     
-	  		    <div class="navigation">
+	  		    <div class="navigation" >
 	  		    	<a class="toggleMenu" href="#">Menú</a>
-					<ul class="nav" style="text-align: center;">
+					<ul class="nav">
 						<li>
 							<a href="{{url('/')}}">Inicio</a>
 						</li>
@@ -72,7 +72,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						</li>
 					</ul> 
 	  		    </div>
-  		     	<div class="header_bottom">
+  		     	<!-- <div class="header_bottom">
 			   		<div class="slider-text">
 				   		<h2>Lorem Ipsum Placerat <br/>Elementum Quistue Tunulla Maris</h2>
 				   		<p>Vivamus vitae augue at quam frigilla tristique sit amet<br/> acin ante sikumpre tisdin.</p>
@@ -82,7 +82,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		  	      	<img src="{{ asset('images/slider-img.png') }}" alt="" />
 		  	    </div>
 	  	     	<div class="clear"></div>
-	        </div>
+	        </div> -->
    		</div>
    </div>
    <!------------End Header ------------>
