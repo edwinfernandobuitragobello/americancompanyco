@@ -22,6 +22,7 @@ Route::post('/agregar_producto','IndexController@agregar_producto');
 Route::post('/eliminar_producto','IndexController@eliminar_producto');
 Route::post('/vaciar_carrito','IndexController@vaciar_carrito');
 Route::get('/carrito_compras','IndexController@carrito_compras');
+Route::get('/respuesta_carrito','IndexController@respuesta_carrito');
 
 Route::get('/admin/categorias','AdministradorController@categorias');
 Route::post('/admin/crear_categoria','AdministradorController@crear_categoria');

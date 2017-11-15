@@ -18,6 +18,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script type="text/javascript" src="{{ asset('js/move-top.js') }}"></script>
 <script src="{{ asset('js/easyResponsiveTabs.js') }}" type="text/javascript"></script>
 <link href="{{ asset('css/easy-responsive-tabs.css') }}" rel="stylesheet" type="text/css" media="all"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  <script type="text/javascript">
     $(document).ready(function () {
         $('#horizontalTab').easyResponsiveTabs({
@@ -143,12 +146,68 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						</tbody>
 					</table>
 					<p style="font-size: 30px; float:right;">Valor total a pagar : <?php echo $total ?> </p><br><br>
+					<input type="hidden" name="carro_input" value="<?php echo $total; ?>"> <br>
+					<!-- Trigger the modal with a button -->
+					<button style="float: right;" id="modal_esconder" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Pagar ahora</button>
 	    		<?php }else{ ?>
 	    				<p style="font-size: 30px;">No tienes productos en el carrito</p>
+
 	    		<?php } ?>
 			    		    
 			</div>		
 	    </div>
+	    
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Registrarte</h4>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+		    <label for="nombre">Nombre:</label>
+		    <input type="text" class="form-control" id="nombre">
+		  </div>
+		  <div class="form-group">
+		    <label for="email">Correo:</label>
+		    <input type="email" class="form-control" id="email">
+		  </div>
+		  <div class="form-group">
+		    <label for="telefono">Teléfono:</label>
+		    <input type="text" class="form-control" id="telefono">
+		  </div>
+		  <!-- boton de pago -->
+			<?php $referenceCode = uniqid(); ?>
+			<form method="post" action="https://sandbox.gateway.payulatam.com/ppp-web-gateway/">
+			  <input name="merchantId"    type="hidden"  value="508029"   >
+			  <input name="accountId"     type="hidden"  value="512321" >
+			  <input name="description"   type="hidden"  value="American Company Co"  >
+			  <input name="referenceCode" type="hidden"  value="<?php echo $referenceCode; ?>" >
+			  <input name="amount"        type="hidden"  value="<?php echo $total; ?>"   >
+			  <input name="tax"           type="hidden"  value="0"  >
+			  <input name="taxReturnBase" type="hidden"  value="0" >
+			  <input name="currency"      type="hidden"  value="COP" >
+			  <input name="signature"     type="hidden"  value="<?php echo md5("4Vj8eK4rloUd272L48hsrarnUA~508029~$referenceCode~".$total."~COP") ?>"  >
+			  <input name="test"          type="hidden"  value="1" >
+			  <input id="buyerEmail" name="buyerEmail"    type="hidden"  value="" >
+			  <input name="responseUrl"    type="hidden"  value="{{url('')}}/respuesta_carrito" >
+			  <input name="confirmationUrl"    type="hidden"  value="{{url('')}}/confirmacion_carrito" >
+			  
+      </div>
+      <div class="modal-footer">
+      		<input id="submit_carro" class="btn btn-default" name="Submit" type="submit" value="Pagar ahora">
+		</form>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 	    <div class="content_top">
         	<div class="wrap">
           	   <h3>Últimos Productos</h3>
@@ -172,6 +231,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
        </div> 
     </div>
  </div>
+ 
    <div class="footer">
 	   	  	<div class="wrap">	
 				<div class="copy_right">
@@ -185,11 +245,24 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			    </div>		
 	        </div>
     	</div>
+
         <script type="text/javascript">
-			$(document).ready(function() {			
+        	$("#nombre").bind('keyup', function(event){
+				if (($("#nombre").val()!="") && ($("#email").val()!="") && ($("#telefono").val()!="")) {
+					alert('si');
+					$('#submit_carro').removeAttr('disabled');
+				}else{
+					$('#submit_carro').attr('disabled','true');	
+				}
+			}); 
+			$(document).ready(function() {		
+				$('#submit_carro').attr('disabled','true');	
 				$().UItoTop({ easingType: 'easeOutQuart' });
-				
 			});
+			function datos_comprador(){
+				alert($("#nombre").val());
+				location.reload();
+			}
 			function vaciar_carrito(){
 		        var host = "http://americancompany.com.co/public/";
 		        $.ajax({

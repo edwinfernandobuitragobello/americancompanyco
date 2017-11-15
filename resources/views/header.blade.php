@@ -15,6 +15,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script src="{{ asset('js/jquery.openCarousel.js') }}" type="text/javascript"></script>
 <script type="text/javascript" src="{{ asset('js/easing.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/move-top.js') }}"></script>
+
 </head>
 <body>
 	<div class="header">
@@ -68,7 +69,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<a href="{{url('/carrito_compras')}}">Carrito de compras</a>
 						</li>
 						<li>
-							<a href="{{url('/contacto')}}">Contactenos</a>
+							<a href="{{url('/contacto')}}">Contáctenos</a>
 						</li>
 					</ul> 
 	  		    </div>

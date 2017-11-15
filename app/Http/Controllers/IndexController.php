@@ -147,4 +147,7 @@ class IndexController extends Controller
         session_start();
         session_destroy();
     }
+    public function respuesta_carrito(){
+        echo json_encode($_GET);
+    }
 }
