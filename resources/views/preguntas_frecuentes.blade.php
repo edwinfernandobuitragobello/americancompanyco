@@ -62,13 +62,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<a href="{{url('/preguntas_frecuentes')}}">Preguntas frecuentes</a>
 						</li>
 						<li>
-							<a href="{{url('/descargar_catalogo')}}">Descargar catálogo</a>
+							<a download="catalogo_american_company_co" href="{{url('/catalogo_american_company_co.pdf')}}">Descargar catálogo</a>
 						</li>
 						<li>
 							<a href="{{url('/carrito_compras')}}">Carrito de compras</a>
-						</li>
-						<li>
-							<a href="{{url('/articulos')}}">Artículos</a>
 						</li>
 						<li>
 							<a href="{{url('/contacto')}}">Contáctenos</a>

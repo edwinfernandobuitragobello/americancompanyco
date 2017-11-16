@@ -96,7 +96,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<a href="{{url('/preguntas_frecuentes')}}">Preguntas frecuentes</a>
 						</li>
 						<li>
-							<a href="{{url('/descargar_catalogo')}}">Descargar catálogo</a>
+							<a download="catalogo_american_company_co" href="{{url('/catalogo_american_company_co.pdf')}}">Descargar catálogo</a>
 						</li>
 						<li>
 							<a href="{{url('/carrito_compras')}}">Carrito de compras</a>
@@ -109,6 +109,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </div>
 	</div>
  	<div class="main">
+ 		<?php $total = 0; ?>
 	 	<div class="wrap">
 	     	<div class="preview-page">
 	     		<button style="float: right;" id="submit_activar" class="btn btn-xs btn-danger" onclick="vaciar_carrito()">
@@ -128,7 +129,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							</tr>
 						</thead>
 				    	<tbody
-							<?php $total = 0; for ($i=0; $i < count($producto) ; $i++) { 
+							<?php for ($i=0; $i < count($producto) ; $i++) { 
 								$total = $total + ($producto[$i]['cant']*$producto[$i]['precio']);
 								echo '<tr>
 									<td style="vertical-align: middle;"><img class="img_ov" src="'.url('/uploads').'/'.$producto[$i]['foto'].'" width="100%" ></td>
@@ -200,7 +201,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			  
       </div>
       <div class="modal-footer">
-      		<input id="submit_carro" class="btn btn-default" name="Submit" type="submit" value="Pagar ahora">
+      		<input onclick="guardar_datos()" id="submit_carro" class="btn btn-default" name="Submit" type="submit" value="Pagar ahora">
 		</form>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
@@ -249,7 +250,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <script type="text/javascript">
         	$("#nombre").bind('keyup', function(event){
 				if (($("#nombre").val()!="") && ($("#email").val()!="") && ($("#telefono").val()!="")) {
-					alert('si');
+					$('#submit_carro').removeAttr('disabled');
+				}else{
+					$('#submit_carro').attr('disabled','true');	
+				}
+			});
+			$("#email").bind('keyup', function(event){
+				if (($("#nombre").val()!="") && ($("#email").val()!="") && ($("#telefono").val()!="")) {
+					$('#submit_carro').removeAttr('disabled');
+				}else{
+					$('#submit_carro').attr('disabled','true');	
+				}
+			});
+			$("#telefono").bind('keyup', function(event){
+				if (($("#nombre").val()!="") && ($("#email").val()!="") && ($("#telefono").val()!="")) {
 					$('#submit_carro').removeAttr('disabled');
 				}else{
 					$('#submit_carro').attr('disabled','true');	
@@ -263,6 +277,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				alert($("#nombre").val());
 				location.reload();
 			}
+			function guardar_datos(){
+		        var host = "http://americancompany.com.co/public/";
+		        var nombre = $("#nombre").val();
+		        var email = $("#email").val();
+		        var telefono = $("#telefono").val();
+		        $.ajax({
+		            type: "POST",
+		            url: host + '/guardar_datos',
+		            data: {"_token": "{{ csrf_token() }}",nombre: nombre, email: email, telefono:telefono},
+		            success: function( msg ) {
+		                $("#buyerEmail").val(email);
+		            }
+		        });
+		    };
 			function vaciar_carrito(){
 		        var host = "http://americancompany.com.co/public/";
 		        $.ajax({

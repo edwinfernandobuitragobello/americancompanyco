@@ -21,6 +21,7 @@ Route::get('/productos','IndexController@productos_busqueda');
 Route::post('/agregar_producto','IndexController@agregar_producto');
 Route::post('/eliminar_producto','IndexController@eliminar_producto');
 Route::post('/vaciar_carrito','IndexController@vaciar_carrito');
+Route::post('/guardar_datos','IndexController@guardar_datos');
 Route::get('/carrito_compras','IndexController@carrito_compras');
 Route::get('/respuesta_carrito','IndexController@respuesta_carrito');
 

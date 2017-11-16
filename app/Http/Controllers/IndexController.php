@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Categorias;
 use App\Productos;
 use App\SubCategoria;
+use App\Compras;
 use Auth;
 use Illuminate\Support\Facades\DB;
 use Mail;
@@ -130,14 +131,12 @@ class IndexController extends Controller
     public function eliminar_producto()
     {
         session_start();
-        // session_destroy(); return;
         $session = $_SESSION['carrito'];
         session_destroy();
         session_start();
         for ($i=0; $i < count($session) ; $i++) { 
             if ($session[$i]['id']!=$_POST['id']) {
                 $_SESSION['carrito'][] = $session[$i];
-                //echo "Su pedido se agregó correctamente";
             }
         }
         redirect()->back();
@@ -147,7 +146,67 @@ class IndexController extends Controller
         session_start();
         session_destroy();
     }
+    public function guardar_datos(){
+        session_start();
+        $_SESSION['nombre'] = $_POST['nombre'];
+        $_SESSION['email'] = $_POST['email'];
+        $_SESSION['telefono'] = $_POST['telefono'];
+    }
     public function respuesta_carrito(){
-        echo json_encode($_GET);
+        if ($_REQUEST['transactionState'] == 4 ) {
+            $compras_consulta = Compras::where('referenceCode',$_REQUEST['referenceCode'])->get();
+            if (count($compras_consulta)>0) {
+                $estadoTx = "La compra ya había sido guardada";
+            }else{
+                session_start();
+                $ApiKey = "4Vj8eK4rloUd272L48hsrarnUA";
+                $TX_VALUE = $_REQUEST['TX_VALUE'];
+                $merchant_id = $_REQUEST['merchantId'];
+                $referenceCode = $_REQUEST['referenceCode'];
+                $New_value = number_format($TX_VALUE, 1, '.', '');
+                $currency = $_REQUEST['currency'];
+                $transactionState = $_REQUEST['transactionState'];
+
+                $estadoTx = "Transacción aprobada";
+                $compra = new Compras();
+                $compra->nombre = $_SESSION['nombre']; 
+                $compra->email = $_SESSION['email']; 
+                $compra->telefono = $_SESSION['telefono']; 
+                $compra->pedido = json_encode($_SESSION['carrito']);
+                $compra->merchant_id = $_REQUEST['merchantId'];
+                $compra->referenceCode = $_REQUEST['referenceCode'];
+                $compra->TX_VALUE = $_REQUEST['TX_VALUE'];
+                $compra->New_value = number_format($TX_VALUE, 1, '.', '');
+                $compra->currency = $_REQUEST['currency'];
+                $compra->transactionState = $_REQUEST['transactionState'];
+                $compra->firma_cadena = "$ApiKey~$merchant_id~$referenceCode~$New_value~$currency~$transactionState";
+                $compra->firmacreada = md5("$ApiKey~$merchant_id~$referenceCode~$New_value~$currency~$transactionState");
+                $compra->firma = $_REQUEST['signature'];
+                $compra->reference_pol = $_REQUEST['reference_pol'];
+                $compra->cus = $_REQUEST['cus'];
+                $compra->extra1 = $_REQUEST['description'];
+                $compra->pseBank = $_REQUEST['pseBank'];
+                $compra->lapPaymentMethod = $_REQUEST['lapPaymentMethod'];
+                $compra->transactionId = $_REQUEST['transactionId'];
+                $compra->save();
+                session_destroy();
+            } 
+        }
+        else if ($_REQUEST['transactionState'] == 6 ) {
+            $estadoTx = "Transacción rechazada";
+        }
+
+        else if ($_REQUEST['transactionState'] == 104 ) {
+            $estadoTx = "Error";
+        }
+
+        else if ($_REQUEST['transactionState'] == 7 ) {
+            $estadoTx = "Transacción pendiente";
+        }
+
+        else {
+            $estadoTx=$_REQUEST['mensaje'];
+        }
+        echo $estadoTx;
     }
 }
