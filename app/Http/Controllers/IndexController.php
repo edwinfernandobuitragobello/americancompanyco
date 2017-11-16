@@ -153,20 +153,20 @@ class IndexController extends Controller
         $_SESSION['telefono'] = $_POST['telefono'];
     }
     public function respuesta_carrito(){
+        session_start();
         if ($_REQUEST['transactionState'] == 4 ) {
             $compras_consulta = Compras::where('referenceCode',$_REQUEST['referenceCode'])->get();
             if (count($compras_consulta)>0) {
-                $estadoTx = "La compra ya había sido guardada";
+                $estadoTx = "La compra ya había sido guardada. Gracias por contar con nosotros para su compra. ¡Pronto estaremos en contacto!";
+                $_SESSION['respuesta_compra'] = $estadoTx;
             }else{
-                session_start();
-                $ApiKey = "4Vj8eK4rloUd272L48hsrarnUA";
+                $ApiKey = "yMJebw04DS6moX3CI295edT01z";
                 $TX_VALUE = $_REQUEST['TX_VALUE'];
                 $merchant_id = $_REQUEST['merchantId'];
                 $referenceCode = $_REQUEST['referenceCode'];
                 $New_value = number_format($TX_VALUE, 1, '.', '');
                 $currency = $_REQUEST['currency'];
                 $transactionState = $_REQUEST['transactionState'];
-
                 $estadoTx = "Transacción aprobada";
                 $compra = new Compras();
                 $compra->nombre = $_SESSION['nombre']; 
@@ -190,23 +190,28 @@ class IndexController extends Controller
                 $compra->transactionId = $_REQUEST['transactionId'];
                 $compra->save();
                 session_destroy();
+                session_start();
+                $_SESSION['respuesta_compra'] = $estadoTx;
             } 
         }
         else if ($_REQUEST['transactionState'] == 6 ) {
-            $estadoTx = "Transacción rechazada";
+            $estadoTx = "Transacción rechazada, Por favor inténtalo de nuevo o ponte en contacto con nosotros.";
+            $_SESSION['respuesta_compra'] = $estadoTx;
         }
 
         else if ($_REQUEST['transactionState'] == 104 ) {
-            $estadoTx = "Error";
+            $estadoTx = "Ha ocurrido un error en el pago, por favor inténtalo de nuevo o ponte en contacto con nosotros";
+            $_SESSION['respuesta_compra'] = $estadoTx;
         }
 
         else if ($_REQUEST['transactionState'] == 7 ) {
-            $estadoTx = "Transacción pendiente";
+            $estadoTx = "Transacción pendiente, por favor inténtalo de nuevo o ponte en contacto con nosotros";
+            $_SESSION['respuesta_compra'] = $estadoTx;
         }
-
         else {
             $estadoTx=$_REQUEST['mensaje'];
+            $_SESSION['respuesta_compra'] = $estadoTx;
         }
-        echo $estadoTx;
+        return redirect('/carrito_compras');
     }
 }

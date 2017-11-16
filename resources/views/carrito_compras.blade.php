@@ -116,49 +116,50 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<i class="ace-icon fa fa-check bigger-120">  VACIAR CARRITO</i>
 				</button><br>
 			    <h3>Carrito de compras</h3>
-			    <?php session_start(); if (isset($_SESSION['carrito'])) { $producto = $_SESSION['carrito']; ?>
-    			 	<table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
-				    	<thead>
-							<tr>
-								<th width="8%"></th>
-								<th>Nombre</th>
-								<th>Precio unitario</th>
-								<th>Cantidad</th>
-								<th>Total</th>
-								<th></th>
-							</tr>
-						</thead>
-				    	<tbody
-							<?php for ($i=0; $i < count($producto) ; $i++) { 
-								$total = $total + ($producto[$i]['cant']*$producto[$i]['precio']);
-								echo '<tr>
-									<td style="vertical-align: middle;"><img class="img_ov" src="'.url('/uploads').'/'.$producto[$i]['foto'].'" width="100%" ></td>
-									<td style="vertical-align: middle;">'.$producto[$i]['nombre'].'</td>
-									<td style="vertical-align: middle;">'.$producto[$i]['precio'].'</td>
-									<td style="vertical-align: middle;">'.$producto[$i]['cant'].'</td>
-									<td style="vertical-align: middle;">'.$producto[$i]['cant']*$producto[$i]['precio'].'</td>
-									<td style="text-align: center; vertical-align: middle;">
-										<button id="submit_activar" class="btn btn-xs btn-warning" onclick="eliminar_carrito('.$producto[$i]['id'].')">
-											<i class="ace-icon fa fa-check bigger-120">  ELIMINAR</i>
-										</button>
-									</td>
-								</tr>';
-				   				 } ?>
-						</tbody>
-					</table>
-					<p style="font-size: 30px; float:right;">Valor total a pagar : <?php echo $total ?> </p><br><br>
-					<input type="hidden" name="carro_input" value="<?php echo $total; ?>"> <br>
-					<!-- Trigger the modal with a button -->
-					<button style="float: right;" id="modal_esconder" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Pagar ahora</button>
-	    		<?php }else{ ?>
-	    				<p style="font-size: 30px;">No tienes productos en el carrito</p>
+			    <?php session_start(); if (!isset($_SESSION['respuesta_compra'])) { ?>
+				    <?php if (isset($_SESSION['carrito'])) { $producto = $_SESSION['carrito']; ?>
+	    			 	<table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
+					    	<thead>
+								<tr>
+									<th width="8%"></th>
+									<th>Nombre</th>
+									<th>Precio unitario</th>
+									<th>Cantidad</th>
+									<th>Total</th>
+									<th></th>
+								</tr>
+							</thead>
+					    	<tbody
+								<?php for ($i=0; $i < count($producto) ; $i++) { 
+									$total = $total + ($producto[$i]['cant']*$producto[$i]['precio']);
+									echo '<tr>
+										<td style="vertical-align: middle;"><img class="img_ov" src="'.url('/uploads').'/'.$producto[$i]['foto'].'" width="100%" ></td>
+										<td style="vertical-align: middle;">'.$producto[$i]['nombre'].'</td>
+										<td style="vertical-align: middle;">'.$producto[$i]['precio'].'</td>
+										<td style="vertical-align: middle;">'.$producto[$i]['cant'].'</td>
+										<td style="vertical-align: middle;">'.$producto[$i]['cant']*$producto[$i]['precio'].'</td>
+										<td style="text-align: center; vertical-align: middle;">
+											<button id="submit_activar" class="btn btn-xs btn-warning" onclick="eliminar_carrito('.$producto[$i]['id'].')">
+												<i class="ace-icon fa fa-check bigger-120">  ELIMINAR</i>
+											</button>
+										</td>
+									</tr>';
+					   				 } ?>
+							</tbody>
+						</table>
+						<p style="font-size: 30px; float:right;">Valor total a pagar : <?php echo $total ?> </p><br><br>
+						<input type="hidden" name="carro_input" value="<?php echo $total; ?>"> <br>
+						<!-- Trigger the modal with a button -->
+						<button style="float: right;" id="modal_esconder" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Pagar ahora</button>
+		    		<?php }else{ ?>
+		    				<p style="font-size: 30px;">No tienes productos en el carrito</p>
 
-	    		<?php } ?>
-			    		    
+		    		<?php } ?>
+		    	<?php }else{ ?>
+	    				<p style="font-size: 30px;"> <?php echo $_SESSION['respuesta_compra']; session_destroy(); ?></p>
+	    		<?php } ?>			    		    
 			</div>		
 	    </div>
-	    
-
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -184,17 +185,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		  </div>
 		  <!-- boton de pago -->
 			<?php $referenceCode = uniqid(); ?>
-			<form method="post" action="https://sandbox.gateway.payulatam.com/ppp-web-gateway/">
-			  <input name="merchantId"    type="hidden"  value="508029"   >
-			  <input name="accountId"     type="hidden"  value="512321" >
+			<form method="post" action="https://gateway.payulatam.com/ppp-web-gateway">
+			  <input name="merchantId"    type="hidden"  value="690369"   >
+			  <input name="accountId"     type="hidden"  value="693272" >
 			  <input name="description"   type="hidden"  value="American Company Co"  >
 			  <input name="referenceCode" type="hidden"  value="<?php echo $referenceCode; ?>" >
 			  <input name="amount"        type="hidden"  value="<?php echo $total; ?>"   >
 			  <input name="tax"           type="hidden"  value="0"  >
 			  <input name="taxReturnBase" type="hidden"  value="0" >
 			  <input name="currency"      type="hidden"  value="COP" >
-			  <input name="signature"     type="hidden"  value="<?php echo md5("4Vj8eK4rloUd272L48hsrarnUA~508029~$referenceCode~".$total."~COP") ?>"  >
-			  <input name="test"          type="hidden"  value="1" >
+			  <input name="signature"     type="hidden"  value="<?php echo md5("yMJebw04DS6moX3CI295edT01z~690369~$referenceCode~".$total."~COP") ?>"  >
+			  <input name="test"          type="hidden"  value="0" >
 			  <input id="buyerEmail" name="buyerEmail"    type="hidden"  value="" >
 			  <input name="responseUrl"    type="hidden"  value="{{url('')}}/respuesta_carrito" >
 			  <input name="confirmationUrl"    type="hidden"  value="{{url('')}}/confirmacion_carrito" >
