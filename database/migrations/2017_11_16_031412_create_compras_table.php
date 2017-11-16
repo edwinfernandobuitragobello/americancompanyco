@@ -19,6 +19,7 @@ class CreateComprasTable extends Migration
             $table->string('email');
             $table->string('telefono');
             $table->longText('pedido');
+            $table->string('estado');
             $table->string('merchant_id');
             $table->string('referenceCode');
             $table->string('TX_VALUE');

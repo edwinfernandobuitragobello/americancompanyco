@@ -7,14 +7,41 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <head>
 <title>American company</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
 <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" media="all"/>
-<link href="{{ asset('css/mystyle.css') }}" rel="stylesheet" type="text/css" media="all"/>
 <script type="text/javascript" src="{{ asset('js/jquery-1.9.0.min.js') }}"></script> 
-<script type="text/javascript" src="{{ asset('js/move-top.js') }}"></script>
+<script src="{{ asset('js/jquery.openCarousel.js') }}" type="text/javascript"></script>
 <script type="text/javascript" src="{{ asset('js/easing.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/move-top.js') }}"></script>
+<script src="{{ asset('js/easyResponsiveTabs.js') }}" type="text/javascript"></script>
+<link href="{{ asset('css/easy-responsive-tabs.css') }}" rel="stylesheet" type="text/css" media="all"/>
+ <script type="text/javascript">
+    $(document).ready(function () {
+        $('#horizontalTab').easyResponsiveTabs({
+            type: 'default', //Types: default, vertical, accordion           
+            width: 'auto', //auto or any width like 600px
+            fit: true   // 100% fit in a container
+        });
+    });
+   </script>		
+<link rel="stylesheet" href="{{ asset('css/etalage.css') }}">
+<script src="{{ asset('js/jquery.etalage.min.js') }}"></script>
+<script>
+			jQuery(document).ready(function($){
+
+				$('#etalage').etalage({
+					thumb_image_width: 300,
+					thumb_image_height: 400,
+					source_image_width: 900,
+					source_image_height: 1200,
+					show_hint: true,
+					click_callback: function(image_anchor, instance_id){
+						alert('Callback example:\nYou clicked on an image with the anchor: "'+image_anchor+'"\n(in Etalage instance: "'+instance_id+'")');
+					}
+				});
+
+			});
+		</script>
+	  <script src="{{ asset('js/star-rating.js') }}" type="text/javascript"></script>
 </head>
 <body>
 	<div class="header">
@@ -78,35 +105,41 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
  <div class="main">
  	<div class="wrap">
-     <div class="preview-page">
-     				<!-- <div class="contact_info">
-					    	  <div class="map">
-							   	    <iframe width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.co.in/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Lighthouse+Point,+FL,+United+States&amp;aq=4&amp;oq=light&amp;sll=26.275636,-80.087265&amp;sspn=0.04941,0.104628&amp;ie=UTF8&amp;hq=&amp;hnear=Lighthouse+Point,+Broward,+Florida,+United+States&amp;t=m&amp;z=14&amp;ll=26.275636,-80.087265&amp;output=embed"></iframe><br><small><a href="https://maps.google.co.in/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Lighthouse+Point,+FL,+United+States&amp;aq=4&amp;oq=light&amp;sll=26.275636,-80.087265&amp;sspn=0.04941,0.104628&amp;ie=UTF8&amp;hq=&amp;hnear=Lighthouse+Point,+Broward,+Florida,+United+States&amp;t=m&amp;z=14&amp;ll=26.275636,-80.087265" style="color:#888;text-align:left;font-size:0.85em">View Larger Map</a></small>
-							  </div>
-      				</div> -->
+     <div class="preview-page"> 
 				  <div class="contact-form">
-				  	<h3>Contáctenos</h3>
-					    <form action="{{ url('/contacto/enviar') }}" method="POST" role="form">
-					    	<div>
-						    	<input name="userName" type="text" class="textbox textbox1" value="Nombre..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nombre...';}" >
-						    	<input name="userEmail" type="text" class="textbox" value="Correo..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Correo...';}">
-						    	<input name="usersubject" type="text" class="textbox" value="Asunto..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Asunto...';}">
-						    	<input type="hidden" name="_token" value="{{ csrf_token() }}">
-						    	<div class="clear"></div>
-						    </div>
-						    <div>
-						    	<span><textarea name="userMsg" value="Message:" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message';}">Mensaje </textarea></span>
-						    </div>
-						   <div>
-						   		<input type="submit" value="Enviar"  class="mybutton">
-						   		<div class="clear"></div>
-						  </div>
-					    </form>
+				  	<h1 class="title_sobre">Preguntas Frecuentes</h1><br>
+				  	<h3>¿Que es un carrito de compras?</h3>
+					 	<p style="font-size: 25px; padding-left: 30px;">Permite que los usuarios visiten tu web y pongan en su cesta de la compra, todos los artículos que desea el comprador. Cuando ya los tienen todos, pueden pasar a la “caja” y pagar.</p>
+					 <h3>¿Como puedo pagar los productos que deseo comprar?  </h3>
+					 	<p style="font-size: 25px; padding-left: 30px;">Se pueden seleccionar los productos a comprar y luego de esto nos dirigimos al menú y damos clic en “Carrito de compras”, ahí podremos ver productos, cantidad, precio unitario y precio total a pagar. Al dar clic en “Pagar ahora” saldrá una venta en la cual nos pide datos como nombre, correo y número de teléfono los cuales son importantes para contacto y envió de productos. Cuando los datos están llenos se activara automáticamente el botón de “Pagar ahora” y este llevará a que realice su pago con las diferentes opciones que se muestran.</p>
+					 <h3>¿Luego de pagar los productos que debo hacer?</h3>
+					 	<p style="font-size: 25px; padding-left: 30px;">Apenas se confirme el pago, American Company Co se pondrá en contacto a los datos proporcionados al momento del pago.</p>
 				  </div>
 			  </div>		
          </div> 
     </div>
  </div>
+ <div class="content_top">
+	<div class="wrap">
+  	   <h3>Últimos Productos</h3>
+  	</div>
+  	<div class="line"> </div>
+  	<div class="wrap">
+  	 <div class="ocarousel_slider">  
+			<div class="ocarousel example_photos" data-ocarousel-perscroll="3">
+            <div class="ocarousel_window">
+            	@foreach($productos as $producto)
+               		<a href="{{url('/producto')}}/{{$producto->id_prod}}" title="{{$producto->nombre_prod}}"> <img src="{{ asset('uploads') }}/{{$producto->foto}}" width="100px" height="100px" alt="" /><p><?php echo str_limit( $producto->nombre_prod ,15); ?></p></a>
+           		@endforeach
+            </div>
+           <span>           
+            <a href="#" data-ocarousel-link="left" style="float: left;" class="prev"> </a>
+            <a href="#" data-ocarousel-link="right" style="float: right;" class="next"> </a>
+           </span>
+	   </div>
+     </div>  
+   </div>    		
+</div>
    <div class="footer">
 	   	  	<div class="wrap">	
 				<div class="copy_right">

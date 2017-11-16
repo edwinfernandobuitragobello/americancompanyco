@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Categorias;
 use App\SubCategoria;
 use App\Productos;
+use App\Compras;
 use Auth;
 use Illuminate\Support\Facades\DB;
 use File;
@@ -209,5 +210,28 @@ class AdministradorController extends Controller
         $producto->delete();
         return redirect()->back()->with('success', 'Producto eliminado con exito');
     }
-    
+    public function ventas(Request $request)
+    {
+        $compras = Compras::orderBy('created_at', 'desc')->paginate(10);
+        return view('ventasAdmin', compact('compras'));
+    }
+    public function por_atender($id)
+    {
+        $compra = Compras::find($id);
+        $compra->estado = 1;
+        $compra->save();
+        return redirect()->back()->with('success', 'Compra atendida con exito');
+    }
+    public function atendido($id)
+    {
+        $compra = Compras::find($id);
+        $compra->estado = 0;
+        $compra->save();
+        return redirect()->back()->with('success', 'Compra por atender con exito');
+    }
+    public function ventas(Request $request)
+    {
+        $compras = Compras::orderBy('created_at', 'desc')->paginate(10);
+        return view('ventasAdmin', compact('compras'));
+    }
 }

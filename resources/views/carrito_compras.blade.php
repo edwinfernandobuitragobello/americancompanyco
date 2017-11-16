@@ -131,7 +131,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							</thead>
 					    	<tbody
 								<?php for ($i=0; $i < count($producto) ; $i++) { 
-									$total = $total + ($producto[$i]['cant']*$producto[$i]['precio']);
+									$total = $total + ($producto[$i]['cant']*str_replace(".", "", $producto[$i]['precio']));
 									echo '<tr>
 										<td style="vertical-align: middle;"><img class="img_ov" src="'.url('/uploads').'/'.$producto[$i]['foto'].'" width="100%" ></td>
 										<td style="vertical-align: middle;">'.$producto[$i]['nombre'].'</td>
@@ -168,7 +168,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Registrarte</h4>
+        <h4 class="modal-title">Datos de contacto para la compra</h4>
       </div>
       <div class="modal-body">
           <div class="form-group">

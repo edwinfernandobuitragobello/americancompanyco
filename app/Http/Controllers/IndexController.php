@@ -66,7 +66,9 @@ class IndexController extends Controller
         $categorias = Categorias::with(['sub_categorias' => function ($query) {
             $query->where('activo_sub', '=', '1');
         }])->where('activo',1)->get();
-        return view('contact', compact('categorias'));
+        //productos para las categorias
+        $productos = Productos::orderBy('updated_at', 'desc')->where('activo_prod',1)->limit(12)->get();
+        return view('preguntas_frecuentes', compact('categorias','productos'));
     }
     public function sobre_nosotros(){
         $categorias = Categorias::with(['sub_categorias' => function ($query) {
@@ -173,6 +175,7 @@ class IndexController extends Controller
                 $compra->email = $_SESSION['email']; 
                 $compra->telefono = $_SESSION['telefono']; 
                 $compra->pedido = json_encode($_SESSION['carrito']);
+                $compra->pedido = 0;
                 $compra->merchant_id = $_REQUEST['merchantId'];
                 $compra->referenceCode = $_REQUEST['referenceCode'];
                 $compra->TX_VALUE = $_REQUEST['TX_VALUE'];

@@ -47,3 +47,7 @@ Route::get('/admin/desactivar_producto/{id?}','AdministradorController@desactiva
 Route::get('/admin/eliminar_producto/{id?}','AdministradorController@eliminar_producto');
 Route::get('/admin/obtenerSubCategorias/{id?}','AdministradorController@obtenerSubCategorias');
 
+Route::get('/admin/ventas','AdministradorController@ventas');
+Route::get('/admin/por_atender/{id?}','AdministradorController@por_atender');
+Route::get('/admin/atendido/{id?}','AdministradorController@atendido');
+Route::get('/admin/venta_detalle','AdministradorController@venta_detalle');
