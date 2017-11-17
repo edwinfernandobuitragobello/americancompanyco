@@ -43,7 +43,7 @@
 				</button>
 
 				<div class="navbar-header pull-left">
-					<a href="index.html" class="navbar-brand">
+					<a href="{{url('')}}/admin/productos" class="navbar-brand">
 						<small>
 							<i class="fa fa-leaf"></i>
 							American Company
@@ -67,7 +67,7 @@
 
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 								<li>
-									<a href="#">
+									<a href="{{url('')}}/admin/cerrandoSesion">
 										<i class="ace-icon fa fa-power-off"></i>
 										Cerrar sesion
 									</a>
@@ -90,7 +90,7 @@
 
 			<ul class="nav nav-list">
 				<li class="active">
-					<a href="index.html">
+					<a href="{{url('')}}/admin/productos">
 						<i class="menu-icon fa fa-tachometer"></i>
 						<span class="menu-text"> Dashboard </span>
 					</a>

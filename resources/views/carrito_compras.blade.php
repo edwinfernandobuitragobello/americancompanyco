@@ -129,7 +129,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									<th></th>
 								</tr>
 							</thead>
-					    	<tbody
+					    	<tbody>
 								<?php for ($i=0; $i < count($producto) ; $i++) { 
 									$total = $total + ($producto[$i]['cant']*str_replace(".", "", $producto[$i]['precio']));
 									echo '<tr>

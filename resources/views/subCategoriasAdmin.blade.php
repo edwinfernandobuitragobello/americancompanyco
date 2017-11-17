@@ -6,7 +6,7 @@
 						<ul class="breadcrumb">
 							<li>
 								<i class="ace-icon fa fa-home home-icon"></i>
-								<a href="#">Inicio</a>
+								<a href="{{url('')}}/admin/productos">Inicio</a>
 							</li>
 							<li class="active">Sub-Categorías</li>
 						</ul><!-- /.breadcrumb -->

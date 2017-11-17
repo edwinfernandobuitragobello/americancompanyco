@@ -50,4 +50,8 @@ Route::get('/admin/obtenerSubCategorias/{id?}','AdministradorController@obtenerS
 Route::get('/admin/ventas','AdministradorController@ventas');
 Route::get('/admin/por_atender/{id?}','AdministradorController@por_atender');
 Route::get('/admin/atendido/{id?}','AdministradorController@atendido');
-Route::get('/admin/venta_detalle','AdministradorController@venta_detalle');
+Route::get('/admin/venta_detalle/{id?}','AdministradorController@venta_detalle');
+
+Route::get('/admin','AdministradorController@inicioSesion');
+Route::post('/admin/iniciandoSesion','AdministradorController@iniciandoSesion');
+Route::get('/admin/cerrandoSesion','AdministradorController@cerrandoSesion');

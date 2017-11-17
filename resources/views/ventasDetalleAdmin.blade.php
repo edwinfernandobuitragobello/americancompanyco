@@ -1,3 +1,7 @@
+<?php 
+	
+	$compras[0]->pedido = json_decode($compras[0]->pedido);
+?>
 @include('headerAdmin')
 <!-- INICIO DE CREAR LA CATEGORIA -->
 			<div class="main-content">
@@ -15,7 +19,7 @@
 					<div class="page-content">
 						<div class="widget-box ">
 							<div class="widget-header">
-								<h4 class="widget-title">Lista de Ventas</h4>
+								<h4 class="widget-title">{{$compras[0]->nombre}} :: {{$compras[0]->email}} :: {{$compras[0]->telefono}}</h4>
 							</div>
 							<div class="widget-body" >
 								<div class="row">
@@ -24,48 +28,29 @@
 										
 										<div class="modal-body no-padding">
 											<table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
-												<thead>
+										    	<thead>
 													<tr>
+														<th width="8%"></th>
 														<th>Nombre</th>
-														<th>Correo</th>
-														<th>Teléfono</th>
-														<th>Valor</th>
-														<th>Fecha</th>
-														<th></th>
-														<th></th>
+														<th>Precio unitario</th>
+														<th>Cantidad</th>
+														<th>Total</th>
 													</tr>
 												</thead>
-
-												<tbody>
-													
-													@foreach($compras as $compra)
-														<tr>
-															<td>{{ $compra->nombre }}</td>
-															<td>{{ $compra->email }}</td>
-															<td>{{ $compra->telefono }}</td>
-															<td>{{ $compra->New_value }}</td>
-															<td>{{ $compra->created_at }}</td>
-															<td style="text-align: center;">
-																<button class="btn btn-xs btn-success" onclick="venta_detalle({{$compra->id}})">
-																	<i class="ace-icon fa fa-trash-o bigger-120">  DETALLES</i>
-																</button>
-															</td>
-															<td style="text-align: center;">
-																	@if($compra->estado==0)
-																		<button id="submit_activar" class="btn btn-xs btn-warning" onclick="por_atender({{$compra->id}})">
-																		<i class="ace-icon fa fa-check bigger-120">  POR ATENDER</i>
-																	@else
-																		<button id="submit_desactivar" class="btn btn-xs btn-success" onclick="atendido({{$compra->id}})">
-																		<i class="ace-icon fa fa-close bigger-120">  ATENDIDO</i>
-																	@endif
-																</button>
-															</td>
-														</tr>
-													@endforeach
-													
+										    	<tbody>
+													<?php $total = 0; for ($i=0; $i < count($compras[0]->pedido) ; $i++) { 
+														$total = $total + ($compras[0]->pedido[$i]->cant*str_replace(".", "", $compras[0]->pedido[$i]->precio));
+														echo '<tr>
+															<td style="vertical-align: middle;"><img class="img_ov" src="'.url('/uploads').'/'.$compras[0]->pedido[$i]->foto.'" width="100%" ></td>
+															<td style="vertical-align: middle;">'.$compras[0]->pedido[$i]->nombre.'</td>
+															<td style="vertical-align: middle;">'.$compras[0]->pedido[$i]->precio.'</td>
+															<td style="vertical-align: middle;">'.$compras[0]->pedido[$i]->cant.'</td>
+															<td style="vertical-align: middle;">'.$compras[0]->pedido[$i]->cant*$compras[0]->pedido[$i]->precio.'</td>
+														</tr>';
+										   				 } ?>
 												</tbody>
 											</table>
-											<div style="text-align: center">{{$compras->links()}}</div> 
+											<p style="font-size: 30px; float:right;">Valor total pagado : <?php echo $total ?> </p>
 										</div>
 									</div>
 								</div>
