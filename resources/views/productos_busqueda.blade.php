@@ -123,14 +123,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	            <div class="section group">
 	            	@foreach($productos_all as $producto_all)
 						<div class="grid_1_of_4 images_1_of_4">
-						 	<h4><a href="{{url('/producto')}}/{{$producto->id_prod}}"><?php echo str_limit( $producto_all->nombre_prod ,23); ?></a></h4>
-						  	<a href="{{url('/producto')}}/{{$producto->id_prod}}"><img width="120px" height="120px" src="{{ asset('uploads') }}/{{$producto_all->foto}}" alt="" /></a>
+						 	<h4><a href="{{url('/producto')}}/{{$producto_all->id_prod}}"><?php echo str_limit( $producto_all->nombre_prod ,20); ?></a></h4>
+						  	<a href="{{url('/producto')}}/{{$producto_all->id_prod}}"><img width="120px" height="120px" src="{{ asset('uploads') }}/{{$producto_all->foto}}" alt="" /></a>
 						  	<div class="price-details">
 						       	<div class="price-number">
 									<p><span class="rupees">$ {{$producto_all->precio}}</span></p>
 							    </div>
 					       		<div class="add-cart">								
-									<h4><a href="{{url('/producto')}}/{{$producto->id_prod}}">Ver más</a></h4>
+									<h4><a href="{{url('/producto')}}/{{$producto_all->id_prod}}">Ver más</a></h4>
 							    </div>
 								<div class="clear"></div>
 							</div>					 
